@@ -100,6 +100,13 @@
                             <p id="modalSize" class="text-gray-900 dark:text-gray-200 text-xs sm:text-sm font-medium mt-0.5">All Size (M-L)</p>
                         </div>
                         <div>
+                            <p class="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">Warna</p>
+                            <div class="flex items-center gap-2 mt-0.5">
+                                <span id="modalColorSquare" class="inline-block w-4 h-4 sm:w-5 sm:h-5 rounded-sm border border-gray-300 dark:border-gray-600 shadow-sm"></span>
+                                <p id="modalColor" class="text-gray-900 dark:text-gray-200 text-xs sm:text-sm font-medium">Black</p>
+                            </div>
+                        </div>
+                        <div>
                             <p class="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">Kode Produk</p>
                             <p id="modalProductCode" class="text-gray-900 dark:text-gray-200 text-xs sm:text-sm font-medium mt-0.5">PROD-001</p>
                         </div>
