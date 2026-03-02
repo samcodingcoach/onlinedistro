@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WhatsApp Contact Form Modal</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d41152",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221016",
+                        "text-dark": "#1b0d12",
+                        "text-light": "#fcf8f9",
+                        "border-light": "#e7cfd7",
+                        "border-dark": "#4a2d36",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light antialiased overflow-hidden h-screen w-full relative">
+<!-- Background Image for context (Fashion E-commerce) -->
+<div class="absolute inset-0 w-full h-full z-0 opacity-10 pointer-events-none" data-alt="Abstract fashion background pattern" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCX0PStkKlgXhhvhWQKKqCXK3rjkzzBDJ7Yzrixiu-h--EI3H7oObtt98O1TQbIXb-64ZYZJ9U7kouyoI4nSFcK8ntmlawrsdBmd00GiB2Mp-N3n97Rm29knJfoncHwgfmv6MXhMql4YXRD_GxbION0ZJjUb5ec4c2nQe_wYjLYllOdBiM2UgMw9CZcR_dwFItCRbFChi5fy77IHeygLtOI1yGAlHUbUyFWCPM4jPcS5dvRDyWnKcqHFMXcWc9lpfBfZipjikxsr0s'); background-size: cover; background-position: center;"></div>
+<!-- Main Content (Simulated Page Behind Modal) -->
+<main class="relative z-10 flex flex-col h-full overflow-y-auto filter blur-[2px]">
+<!-- Navbar Placeholder -->
+<header class="w-full h-20 border-b border-border-light dark:border-border-dark flex items-center justify-between px-10">
+<div class="text-2xl font-bold tracking-tight text-primary">LUXE.</div>
+<nav class="hidden md:flex gap-8 text-sm font-medium">
+<span class="hover:text-primary cursor-pointer">New Arrivals</span>
+<span class="hover:text-primary cursor-pointer">Dresses</span>
+<span class="hover:text-primary cursor-pointer">Accessories</span>
+<span class="hover:text-primary cursor-pointer">Sale</span>
+</nav>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer">search</span>
+<span class="material-symbols-outlined cursor-pointer">shopping_bag</span>
+</div>
+</header>
+<!-- Hero Section Placeholder -->
+<div class="flex-1 flex items-center justify-center">
+<div class="text-center space-y-4">
+<h1 class="text-5xl font-bold">Summer Collection 2024</h1>
+<p class="text-xl opacity-70">Discover the new elegance.</p>
+<button class="bg-primary text-white px-8 py-3 rounded hover:bg-opacity-90 transition-colors mt-4">Shop Now</button>
+</div>
+</div>
+</main>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity"></div>
+<!-- Modal Content -->
+<div class="relative w-full max-w-[520px] bg-white dark:bg-background-dark rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
+<!-- Close Button -->
+<button class="absolute right-4 top-4 p-2 rounded-full text-gray-400 hover:text-primary hover:bg-background-light dark:hover:bg-gray-800 transition-colors z-10">
+<span class="material-symbols-outlined">close</span>
+</button>
+<!-- Modal Header -->
+<div class="pt-8 px-8 pb-4 text-center">
+<div class="mx-auto w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-4">
+<!-- WhatsApp Icon via SVG since it's specific brand -->
+<svg class="w-6 h-6 text-[#25D366]" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.304-5.235c0-5.443 4.429-9.873 9.876-9.873 2.639 0 5.12 1.03 6.988 2.898a9.825 9.825 0 012.893 6.991c-.003 5.444-4.432 9.874-9.877 9.874"></path>
+</svg>
+</div>
+<h3 class="text-2xl font-bold text-text-dark dark:text-white leading-tight">Chat with a Stylist</h3>
+<p class="text-gray-500 dark:text-gray-400 text-sm mt-2 max-w-xs mx-auto leading-relaxed">
+                    Isi form di bawah ini dan kami akan langsung terhubung ke WhatsApp untuk membantu Anda.
+                </p>
+</div>
+<!-- Scrollable Content -->
+<div class="px-8 pb-8 flex-1 overflow-y-auto custom-scrollbar">
+<form class="flex flex-col gap-5">
+<!-- Name Field -->
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-text-dark dark:text-gray-200" for="name">Nama Lengkap <span class="text-primary">*</span></label>
+<div class="relative">
+<input class="w-full h-12 rounded border border-border-light dark:border-border-dark bg-background-light dark:bg-black/20 px-4 text-base text-text-dark dark:text-white focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-gray-400 dark:placeholder:text-gray-600 transition-all outline-none" id="name" placeholder="Masukkan nama Anda" type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl pointer-events-none">person</span>
+</div>
+</div>
+<!-- Email Field -->
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-text-dark dark:text-gray-200" for="email">Email <span class="text-gray-400 font-normal text-xs ml-1">(Opsional)</span></label>
+<div class="relative">
+<input class="w-full h-12 rounded border border-border-light dark:border-border-dark bg-background-light dark:bg-black/20 px-4 text-base text-text-dark dark:text-white focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-gray-400 dark:placeholder:text-gray-600 transition-all outline-none" id="email" placeholder="email@contoh.com" type="email"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl pointer-events-none">mail</span>
+</div>
+</div>
+<!-- Question Field -->
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-text-dark dark:text-gray-200" for="question">Pertanyaan <span class="text-primary">*</span></label>
+<textarea class="w-full min-h-[100px] rounded border border-border-light dark:border-border-dark bg-background-light dark:bg-black/20 p-4 text-base text-text-dark dark:text-white focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-gray-400 dark:placeholder:text-gray-600 transition-all outline-none resize-none" id="question" placeholder="Tulis pertanyaan Anda di sini..."></textarea>
+</div>
+<!-- Captcha -->
+<div class="bg-primary/5 dark:bg-primary/10 rounded-lg p-4 border border-primary/10 flex items-center justify-between gap-4">
+<div class="flex flex-col">
+<span class="text-xs font-medium text-primary uppercase tracking-wider mb-1">Security Check</span>
+<p class="text-sm font-semibold text-text-dark dark:text-gray-200 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">lock</span>
+                                Berapa hasil <span class="text-primary font-bold text-lg">4 + 3</span> ?
+                            </p>
+</div>
+<input class="w-20 h-10 rounded text-center font-bold text-lg border border-border-light dark:border-border-dark bg-white dark:bg-black/40 focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="?" type="number"/>
+</div>
+<!-- Checkbox Consent -->
+<label class="flex items-start gap-3 cursor-pointer group">
+<div class="relative flex items-center mt-0.5">
+<input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-black/20 transition-all checked:border-primary checked:bg-primary hover:border-primary" type="checkbox"/>
+<span class="material-symbols-outlined pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[16px] text-white opacity-0 transition-opacity peer-checked:opacity-100">check</span>
+</div>
+<span class="text-sm text-gray-500 dark:text-gray-400 leading-snug group-hover:text-text-dark dark:group-hover:text-gray-300 transition-colors">
+                            Saya setuju dengan <a class="text-primary hover:underline" href="#">Kebijakan Privasi</a> dan pemrosesan data untuk dihubungi via WhatsApp.
+                        </span>
+</label>
+<!-- Submit Button -->
+<button class="w-full bg-primary hover:bg-[#b00e44] text-white h-14 rounded-lg font-bold text-base shadow-lg shadow-primary/25 transition-all transform active:scale-[0.99] flex items-center justify-center gap-2 mt-2" type="button">
+<span class="material-symbols-outlined">chat</span>
+                        Chat Sekarang
+                    </button>
+</form>
+</div>
+<!-- Footer Decorative Stripe -->
+<div class="h-1.5 w-full bg-gradient-to-r from-primary via-pink-400 to-primary"></div>
+</div>
+</div>
+<!-- Custom Scrollbar Styles -->
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #e5e7eb;
+            border-radius: 20px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #374151;
+        }
+    </style>
+</body></html>

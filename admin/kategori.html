@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kategori - Admin Distro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="js/admin.js"></script>
+    <style>
+        /* Loading Overlay Styles */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(3px);
+        }
+        
+        .loading-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .loading-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-bar-container {
+            width: 100%;
+            height: 24px;
+            background: #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #2563eb);
+            border-radius: 12px;
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+        }
+        
+        .progress-text {
+            font-size: 0.875rem;
+            color: #4b5563;
+            font-weight: 500;
+        }
+        
+        .loading-spinner {
+            width: 64px;
+            height: 64px;
+            border: 5px solid rgba(59, 130, 246, 0.2);
+            border-top: 5px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .spinner-icon {
+            position: absolute;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.7;
+                transform: scale(0.9);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-container">
+            <div class="loading-spinner">
+                <svg class="spinner-icon" width="32" height="32" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2v6m0 4v6m0 4v-6m0-10V2m0 6l-4.24 4.24M12 8l4.24 4.24M12 16l4.24-4.24M12 16l-4.24-4.24" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h2 class="loading-title">Memuat Data Kategori</h2>
+            <div class="progress-bar-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+            <p id="progressText" class="progress-text">0%</p>
+        </div>
+    </div>
+
+    <!-- Header with Navigation -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <!-- Menu Toggle Button -->
+                    <button id="menuToggle" onclick="toggleMenu()" class="lg:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100">
+                        <i class="fas fa-bars h-6 w-6 flex items-center justify-center"></i>
+                    </button>
+                    <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Manajemen Kategori</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span id="adminName" class="text-sm text-gray-600 hidden sm:block"></span>
+                    <button onclick="logout()" class="bg-red-500 text-white px-3 py-1 sm:px-4 sm:py-2 rounded hover:bg-red-600 text-sm sm:text-base">Logout</button>
+                </div>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav id="navMenu" class="hidden lg:block border-t pt-4 pb-2">
+                <ul class="flex flex-col lg:flex-row lg:space-x-8 space-y-2 lg:space-y-0">
+                    <li>
+                        <a href="dashboard.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Admin
+                        </a>
+                    </li>
+                    <li>
+                        <a href="kategori.html" class="block px-3 py-2 rounded-md bg-blue-50 text-blue-700 hover:bg-blue-100 hover:text-blue-900 font-medium">
+                            Kategori
+                        </a>
+                    </li>
+                    <li>
+                        <a href="produk.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Produk
+                        </a>
+                    </li>
+                    <li>
+                        <a href="banner.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Banner
+                        </a>
+                    </li>
+                    <li>
+                        <a href="video.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Video
+                        </a>
+                    </li>
+                    <li>
+                        <a href="distro.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Distro
+                        </a>
+                    </li>
+                    <li>
+                        <button onclick="logout()" class="block lg:hidden px-3 py-2 rounded-md text-red-600 hover:bg-red-50 hover:text-red-700 font-medium w-full text-left">
+                            Logout
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="toggleMenu()"></div>
+    
+    <!-- Mobile Navigation Slide -->
+    <div id="mobileMenu" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform -translate-x-full transition-transform duration-300">
+        <div class="p-4 border-b">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-semibold text-gray-900">Menu</h2>
+                <button onclick="toggleMenu()" class="p-2 rounded-md text-gray-600 hover:bg-gray-100">
+                    <i class="fas fa-times h-6 w-6 flex items-center justify-center"></i>
+                </button>
+            </div>
+        </div>
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li>
+                    <a href="dashboard.html" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="admin.html" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Admin
+                    </a>
+                </li>
+                <li>
+                    <a href="kategori.html" onclick="toggleMenu()" class="block px-3 py-2 rounded-md bg-blue-50 text-blue-700 hover:bg-blue-100 hover:text-blue-900 font-medium">
+                        Kategori
+                    </a>
+                </li>
+                <li>
+                    <a href="produk.html" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Produk
+                    </a>
+                </li>
+                <li>
+                    <a href="banner.html" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Banner
+                    </a>
+                </li>
+                <li>
+                    <a href="video.html" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Video
+                    </a>
+                </li>
+                <li>
+                    <a href="distro.html" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Distro
+                    </a>
+                </li>
+                <li class="border-t pt-2 mt-4">
+                    <div class="px-3 py-2 text-sm text-gray-600">
+                        User: <span id="mobileAdminName" class="font-medium"></span>
+                    </div>
+                    <button onclick="logout()" class="block w-full px-3 py-2 rounded-md text-red-600 hover:bg-red-50 hover:text-red-700 font-medium text-left">
+                        Logout
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Search and Add Button -->
+        <div class="mb-4 flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
+            <div class="w-full lg:w-1/3">
+                <div class="relative">
+                    <input type="text" id="searchInput" placeholder="Cari kategori..." 
+                           onkeyup="searchKategori()"
+                           class="w-full px-4 py-2 pr-10 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                        <i class="fas fa-search h-5 w-5 text-gray-400 flex items-center justify-center"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
+                <button onclick="showAddForm()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm sm:text-base">
+                    + Tambah Kategori
+                </button>
+            </div>
+        </div>
+        
+        <!-- Data Count -->
+        <div class="mb-6 text-sm text-gray-600">
+            Jumlah Data: <span id="dataCount" class="font-semibold">0</span>
+        </div>
+
+        <!-- Messages -->
+        <div id="successMessage" class="hidden mb-4 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
+            <span id="successText"></span>
+        </div>
+        
+        <div id="errorMessage" class="hidden mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+            <span id="errorText"></span>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[5%]">No</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Kategori</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[20%]">Background URL</th>
+                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-[7%]">Favorit</th>
+                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-[7%]">Aktif</th>
+                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-[7%]">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="kategoriTableBody" class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td colspan="6" class="px-6 py-4 text-center text-gray-500">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Modal -->
+    <div id="kategoriModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+        <div class="relative top-20 mx-auto p-5 border w-96 sm:w-full sm:max-w-md shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <h3 id="modalTitle" class="text-lg leading-6 font-medium text-gray-900 mb-4">Tambah Kategori</h3>
+                
+                <!-- Modal Messages -->
+                <div id="modalSuccessMessage" class="hidden mb-4 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
+                    <span id="modalSuccessText"></span>
+                </div>
+                
+                <div id="modalErrorMessage" class="hidden mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+                    <span id="modalErrorText"></span>
+                </div>
+
+                <form id="kategoriForm" class="space-y-4">
+                    <input type="hidden" id="id_kategori" name="id_kategori">
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Kategori</label>
+                        <input type="text" id="nama_kategori" name="nama_kategori" required
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Background Image</label>
+                        <div id="currentImageContainer" class="mb-2 hidden">
+                            <p class="text-xs text-gray-600 mb-1">Gambar saat ini:</p>
+                            <img id="currentImage" src="" alt="Current Image" class="h-20 w-auto rounded border">
+                        </div>
+                        <input type="file" id="background_image" name="background_image" accept=".jpg,.jpeg,.png"
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <p class="mt-1 text-xs text-gray-500">Format: JPG/PNG, Max: 500KB (Kosongkan jika tidak ingin mengubah gambar)</p>
+                        <div id="imagePreview" class="mt-2 hidden">
+                            <p class="text-xs text-gray-600 mb-1">Preview gambar baru:</p>
+                            <img id="previewImg" src="" alt="Preview" class="h-20 w-auto rounded border">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Favorit</label>
+                        <select id="favorit" name="favorit"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="0">Tidak</option>
+                            <option value="1">Ya</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Aktif</label>
+                        <select id="aktif" name="aktif"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="1">Aktif</option>
+                            <option value="0">Tidak Aktif</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-2 pt-4">
+                        <button type="button" onclick="closeModal()" 
+                                class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">
+                            Batal
+                        </button>
+                        <button type="submit" id="submitBtn"
+                                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            Simpan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Preview Modal -->
+    <div id="imageModal" class="hidden fixed inset-0 bg-black bg-opacity-75 overflow-y-auto h-full w-full z-50" onclick="closeImageModal()">
+        <div class="relative top-10 mx-auto p-5" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-medium text-white">Preview Gambar</h3>
+                <button onclick="closeImageModal()" class="text-white hover:text-gray-300">
+                    <i class="fas fa-times h-8 w-8 flex items-center justify-center"></i>
+                </button>
+            </div>
+            <div class="flex justify-center">
+                <img id="modalImage" src="" alt="Background Image" class="max-w-full max-h-96 rounded-lg shadow-lg">
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Check authentication and get current data
+    let currentToken = localStorage.getItem('admin_token');
+    let currentAdmin = JSON.parse(localStorage.getItem('admin_data') || '{}');
+    let allKategoriData = []; // Store all data for search
+
+    // Loading progress functions
+    function showLoading() {
+        const overlay = document.getElementById('loadingOverlay');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        
+        overlay.style.display = 'flex';
+        progressBar.style.width = '0%';
+        progressText.textContent = '0%';
+    }
+
+    function updateProgress(percent) {
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        
+        progressBar.style.width = percent + '%';
+        progressText.textContent = percent + '%';
+    }
+
+    function hideLoading() {
+        const overlay = document.getElementById('loadingOverlay');
+        
+        // Ensure 100% before hiding
+        updateProgress(100);
+        
+        setTimeout(() => {
+            overlay.style.display = 'none';
+        }, 500);
+    }
+
+    // Simulate progress while loading
+    function simulateProgress(callback, duration = 2000) {
+        let progress = 0;
+        const increment = 100 / (duration / 50); // Update every 50ms
+        
+        const interval = setInterval(() => {
+            progress += increment;
+            if (progress >= 95) {
+                progress = 95; // Stop at 95%, let the actual completion take it to 100%
+                clearInterval(interval);
+            }
+            updateProgress(Math.round(progress));
+        }, 50);
+        
+        return () => {
+            clearInterval(interval);
+            updateProgress(100);
+            callback();
+        };
+    }
+
+    // Check auth
+    if (!currentToken) {
+        window.location.href = 'login.html';
+    }
+
+    // Display admin name
+    if (currentAdmin.username) {
+        document.getElementById('adminName').textContent = currentAdmin.username;
+        document.getElementById('mobileAdminName').textContent = currentAdmin.username;
+    }
+
+    /**
+     * Toggle mobile menu
+     * Open or close the mobile navigation menu
+     */
+    function toggleMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('mobileMenuOverlay');
+        
+        if (mobileMenu.classList.contains('-translate-x-full')) {
+            // Open menu
+            mobileMenu.classList.remove('-translate-x-full');
+            overlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        } else {
+            // Close menu
+            mobileMenu.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    /**
+     * Load kategori data from API
+     */
+    async function loadKategori() {
+        // Show loading overlay
+        showLoading();
+        
+        // Start progress simulation
+        const completeProgress = simulateProgress(() => {
+            // This callback will be called when we want to complete the progress
+        }, 2000);
+        
+        try {
+            const response = await fetch('../api/kategori/list.php');
+            
+            let data;
+            try {
+                const responseText = await response.text();
+                data = JSON.parse(responseText);
+            } catch (parseError) {
+                throw new Error('Server returned invalid JSON format: ' + parseError.message);
+            }
+            
+            const tbody = document.getElementById('kategoriTableBody');
+            
+            if (data.success && data.data && data.data.length > 0) {
+                // Store all data for search
+                allKategoriData = data.data;
+                
+                // Update data count
+                document.getElementById('dataCount').textContent = data.data.length;
+                
+                // Display all data initially
+                displayKategori(data.data);
+            } else {
+                // Clear search data
+                allKategoriData = [];
+                // Update data count to 0
+                document.getElementById('dataCount').textContent = '0';
+                tbody.innerHTML = '<tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">Tidak ada data kategori</td></tr>';
+            }
+            
+            // Complete progress and hide loading
+            completeProgress();
+            hideLoading();
+        } catch (error) {
+            console.error('Error loading kategori:', error);
+            // Complete progress and hide loading even on error
+            completeProgress();
+            hideLoading();
+            showMessage('error', 'Gagal memuat data: ' + error.message);
+            document.getElementById('kategoriTableBody').innerHTML = '<tr><td colspan="6" class="px-6 py-4 text-center text-red-500">Gagal memuat data. Silakan refresh halaman.</td></tr>';
+        }
+    }
+
+    // Display kategori data
+    function displayKategori(data) {
+        const tbody = document.getElementById('kategoriTableBody');
+        
+        if (data.length > 0) {
+            tbody.innerHTML = data.map((kategori, index) => `
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 w-[5%]">${index + 1}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 truncate max-w-xs">${kategori.nama_kategori}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 truncate w-[20%]">
+                        ${kategori.background_url ? 
+                            `<button onclick="showImageModal('${kategori.background_url}')" class="text-blue-600 hover:text-blue-800 hover:underline truncate block max-w-xs" title="${kategori.background_url}">${kategori.background_url}</button>` 
+                            : '-'
+                        }
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-center w-[7%]">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${kategori.favorit ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}">
+                            ${kategori.favorit ? 'Ya' : 'Tidak'}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-center w-[7%]">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${kategori.aktif ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                            ${kategori.aktif ? 'Aktif' : 'Tidak Aktif'}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-center w-[7%]">
+                        <button onclick="editKategori(${JSON.stringify(kategori).replace(/"/g, '&quot;')})" 
+                                class="text-indigo-600 hover:text-indigo-900">Edit</button>
+                    </td>
+                </tr>
+            `).join('');
+        } else {
+            tbody.innerHTML = '<tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">Tidak ada data yang ditemukan</td></tr>';
+        }
+    }
+
+    // Search kategori
+    function searchKategori() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+        
+        if (searchTerm === '') {
+            // Show all data
+            displayKategori(allKategoriData);
+            document.getElementById('dataCount').textContent = allKategoriData.length;
+        } else {
+            // Filter data
+            const filteredData = allKategoriData.filter(kategori => 
+                kategori.nama_kategori.toLowerCase().includes(searchTerm)
+            );
+            
+            displayKategori(filteredData);
+            document.getElementById('dataCount').textContent = filteredData.length;
+        }
+    }
+
+    // Show add form
+    function showAddForm() {
+        document.getElementById('modalTitle').textContent = 'Tambah Kategori';
+        document.getElementById('kategoriForm').reset();
+        document.getElementById('id_kategori').value = '';
+        // Clear current image
+        document.getElementById('currentImageContainer').classList.add('hidden');
+        document.getElementById('imagePreview').classList.add('hidden');
+        document.getElementById('kategoriModal').classList.remove('hidden');
+    }
+
+    // Edit kategori
+    function editKategori(kategori) {
+        document.getElementById('modalTitle').textContent = 'Edit Kategori';
+        document.getElementById('id_kategori').value = kategori.id_kategori;
+        document.getElementById('nama_kategori').value = kategori.nama_kategori;
+        document.getElementById('favorit').value = kategori.favorit;
+        document.getElementById('aktif').value = kategori.aktif;
+        
+        // Show current image if exists
+        const currentImageContainer = document.getElementById('currentImageContainer');
+        const currentImage = document.getElementById('currentImage');
+        if (kategori.background_url) {
+            currentImage.src = '../public/images/' + kategori.background_url;
+            currentImageContainer.classList.remove('hidden');
+        } else {
+            currentImageContainer.classList.add('hidden');
+        }
+        
+        // Clear any new image preview
+        document.getElementById('imagePreview').classList.add('hidden');
+        document.getElementById('background_image').value = '';
+        
+        document.getElementById('kategoriModal').classList.remove('hidden');
+    }
+
+    // Close modal
+    function closeModal() {
+        document.getElementById('kategoriModal').classList.add('hidden');
+        // Clear modal messages when closing
+        document.getElementById('modalSuccessMessage').classList.add('hidden');
+        document.getElementById('modalErrorMessage').classList.add('hidden');
+        // Clear images
+        document.getElementById('currentImageContainer').classList.add('hidden');
+        document.getElementById('imagePreview').classList.add('hidden');
+        document.getElementById('kategoriForm').reset();
+        document.getElementById('id_kategori').value = '';
+    }
+
+    // Show message in modal
+    function showModalMessage(type, message) {
+        const messageEl = type === 'success' ? 
+            document.getElementById('modalSuccessMessage') : 
+            document.getElementById('modalErrorMessage');
+        const textEl = type === 'success' ? 
+            document.getElementById('modalSuccessText') : 
+            document.getElementById('modalErrorText');
+        
+        textEl.textContent = message;
+        messageEl.classList.remove('hidden');
+        
+        // Auto-hide error messages after 3 seconds
+        if (type === 'error') {
+            setTimeout(() => {
+                messageEl.classList.add('hidden');
+            }, 3000);
+        }
+    }
+
+    // Show message
+    function showMessage(type, message) {
+        const messageEl = type === 'success' ? 
+            document.getElementById('successMessage') : 
+            document.getElementById('errorMessage');
+        const textEl = type === 'success' ? 
+            document.getElementById('successText') : 
+            document.getElementById('errorText');
+        
+        textEl.textContent = message;
+        messageEl.classList.remove('hidden');
+        
+        setTimeout(() => {
+            messageEl.classList.add('hidden');
+        }, 3000);
+    }
+
+    // Image preview
+    document.addEventListener('DOMContentLoaded', function() {
+        const imageInput = document.getElementById('background_image');
+        if (imageInput) {
+            imageInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                const preview = document.getElementById('imagePreview');
+                const previewImg = document.getElementById('previewImg');
+                
+                if (file) {
+                    // Check file size (500KB = 500 * 1024 bytes)
+                    if (file.size > 500 * 1024) {
+                        showMessage('error', 'Ukuran gambar maksimal 500KB');
+                        e.target.value = '';
+                        return;
+                    }
+                    
+                    // Check file type
+                    const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+                    if (!validTypes.includes(file.type)) {
+                        showMessage('error', 'Format file harus JPG atau PNG');
+                        e.target.value = '';
+                        return;
+                    }
+                    
+                    // Show preview
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImg.src = e.target.result;
+                        preview.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.classList.add('hidden');
+                }
+            });
+        }
+    });
+
+    /**
+     * Submit form - create or update kategori
+     */
+    document.getElementById('kategoriForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const id_kategori = document.getElementById('id_kategori').value;
+        const nama_kategori = document.getElementById('nama_kategori').value.trim();
+        const imageFile = document.getElementById('background_image').files[0];
+        
+        // Validation
+        if (!nama_kategori) {
+            showModalMessage('error', 'Nama kategori harus diisi');
+            return;
+        }
+        
+        if (nama_kategori.length < 3) {
+            showModalMessage('error', 'Nama kategori minimal 3 karakter');
+            return;
+        }
+        
+        const formData = new FormData();
+        formData.append('nama_kategori', nama_kategori);
+        formData.append('favorit', parseInt(document.getElementById('favorit').value));
+        formData.append('aktif', parseInt(document.getElementById('aktif').value));
+        
+        if (imageFile) {
+            // Validate file again on submit
+            if (imageFile.size > 500 * 1024) {
+                showModalMessage('error', 'Ukuran gambar maksimal 500KB');
+                return;
+            }
+            
+            const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+            if (!validTypes.includes(imageFile.type)) {
+                showModalMessage('error', 'Format file harus JPG atau PNG');
+                return;
+            }
+            
+            formData.append('background_image', imageFile);
+        }
+        
+        if (id_kategori) {
+            formData.append('id_kategori', id_kategori);
+        }
+        
+        const url = id_kategori ? '../api/kategori/update.php' : '../api/kategori/new.php';
+        const isUpdate = !!id_kategori;
+        
+        // Show loading overlay
+        showLoading();
+        
+        // Disable submit button during processing
+        const submitBtn = document.getElementById('submitBtn');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Menyimpan...';
+        
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + currentToken
+                },
+                body: formData
+            });
+            
+            let data;
+            try {
+                const responseText = await response.text();
+                data = JSON.parse(responseText);
+            } catch (parseError) {
+                throw new Error('Server returned invalid JSON format');
+            }
+            
+            if (data.success) {
+                hideLoading();
+                showModalMessage('success', data.message);
+                // Close modal after 2 seconds and reload data
+                setTimeout(() => {
+                    closeModal();
+                    loadKategori();
+                    // Also show success message on main page
+                    showMessage('success', data.message);
+                }, 2000);
+            } else {
+                hideLoading();
+                showModalMessage('error', data.message || 'Terjadi kesalahan saat menyimpan data');
+            }
+        } catch (error) {
+            console.error('Submit error:', error);
+            hideLoading();
+            showModalMessage('error', 'Terjadi kesalahan: ' + error.message);
+        } finally {
+            // Re-enable submit button
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    });
+
+
+
+    /**
+     * Logout function - using common function from admin.js
+     */
+    function logout() {
+        if (confirm('Apakah Anda yakin ingin keluar?')) {
+            localStorage.removeItem('admin_token');
+            localStorage.removeItem('admin_data');
+            window.location.href = 'login.html';
+        }
+    }
+
+    // Show image modal
+    function showImageModal(imageUrl) {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        modalImage.src = '../public/images/' + imageUrl; // Correct path to public/images directory
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Close image modal
+    function closeImageModal() {
+        const modal = document.getElementById('imageModal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Load data on page load
+    // Show loading immediately when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        showLoading();
+        loadKategori();
+    });
+    </script>
+</body>
+</html>

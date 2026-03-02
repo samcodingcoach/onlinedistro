@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distro - Admin Distro</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <script src="assets/js/admin.js"></script>
+    <style>
+        .tab-content {
+            display: none !important;
+        }
+        .tab-content.active {
+            display: block !important;
+        }
+        .tab-content.active.grid-cols-12 {
+            display: grid !important;
+        }
+        .tab-btn.active {
+            color: #137fec;
+            border-bottom-color: #137fec;
+            border-bottom-width: 2px;
+        }
+        .absolute.right-3.top-1\\/2.transform.-translate-y-1\\/2.text-blue-600 {
+            cursor: pointer;
+        }
+        
+        /* Loading Overlay Styles */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(3px);
+        }
+        
+        .loading-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .loading-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-bar-container {
+            width: 100%;
+            height: 24px;
+            background: #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #2563eb);
+            border-radius: 12px;
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+        }
+        
+        .progress-text {
+            font-size: 0.875rem;
+            color: #4b5563;
+            font-weight: 500;
+        }
+        
+        .loading-spinner {
+            width: 64px;
+            height: 64px;
+            border: 5px solid rgba(59, 130, 246, 0.2);
+            border-top: 5px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .spinner-icon {
+            position: absolute;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.7;
+                transform: scale(0.9);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-container">
+            <div class="loading-spinner">
+                <svg class="spinner-icon" width="32" height="32" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2v6m0 4v6m0 4v-6m0-10V2m0 6l-4.24 4.24M12 8l4.24 4.24M12 16l4.24-4.24M12 16l-4.24-4.24" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h2 class="loading-title">Memuat Data Distro</h2>
+            <div class="progress-bar-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+            <p id="progressText" class="progress-text">0%</p>
+        </div>
+    </div>
+
+    <!-- Header with Navigation -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <!-- Menu Toggle Button -->
+                    <button id="menuToggle" onclick="toggleMenu()" class="lg:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Manajemen Distro</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span id="adminName" class="text-sm text-gray-600 hidden sm:block"></span>
+                    <button onclick="logout()" class="bg-red-500 text-white px-3 py-1 sm:px-4 sm:py-2 rounded hover:bg-red-600 text-sm sm:text-base">Logout</button>
+                </div>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav id="navMenu" class="hidden lg:block border-t pt-4 pb-2">
+                <ul class="flex flex-col lg:flex-row lg:space-x-8 space-y-2 lg:space-y-0">
+                    <li>
+                        <a href="dashboard.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Admin
+                        </a>
+                    </li>
+                    <li>
+                        <a href="kategori.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Kategori
+                        </a>
+                    </li>
+                    <li>
+                        <a href="produk.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Produk
+                        </a>
+                    </li>
+                    <li>
+                        <a href="banner.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Banner
+                        </a>
+                    </li>
+                    <li>
+                        <a href="video.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Video
+                        </a>
+                    </li>
+                    <li>
+                        <a href="distro.html" class="block px-3 py-2 rounded-md bg-blue-50 text-blue-700 hover:bg-blue-100 hover:text-blue-900 font-medium">
+                            Distro
+                        </a>
+                    </li>
+                    <li>
+                        <button onclick="logout()" class="block lg:hidden px-3 py-2 rounded-md text-red-600 hover:bg-red-50 hover:text-red-700 font-medium w-full text-left">
+                            Logout
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="toggleMenu()"></div>
+
+    <!-- Mobile Navigation Slide -->
+    <div id="mobileMenu" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform -translate-x-full transition-transform duration-300">
+        <div class="p-4 border-b">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-semibold text-gray-900">Menu</h2>
+                <button onclick="toggleMenu()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="p-4">
+            <ul class="space-y-2">
+                <li>
+                    <a href="dashboard.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="admin.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Admin
+                    </a>
+                </li>
+                <li>
+                    <a href="kategori.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Kategori
+                    </a>
+                </li>
+                <li>
+                    <a href="produk.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Produk
+                    </a>
+                </li>
+                <li>
+                    <a href="banner.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Banner
+                    </a>
+                </li>
+                <li>
+                    <a href="video.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Video
+                    </a>
+                </li>
+                <li>
+                    <a href="distro.html" class="block px-3 py-2 rounded-md bg-blue-50 text-blue-700 hover:bg-blue-100 hover:text-blue-900 font-medium">
+                        Distro
+                    </a>
+                </li>
+                <li>
+                    <button onclick="logout()" class="block px-3 py-2 rounded-md text-red-600 hover:bg-red-50 hover:text-red-700 font-medium w-full text-left">
+                        Logout
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header -->
+        <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+            <div>
+                <h1 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                    <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    Informasi Distro
+                </h1>
+                <div class="text-sm text-gray-500 mt-1">
+                    Kelola informasi lengkap distro Anda
+                </div>
+            </div>
+        </div>
+
+        <!-- Success/Error Messages -->
+        <div id="successMessage" class="hidden mx-8 mt-4 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg">
+            <span id="successText"></span>
+        </div>
+        
+        <div id="errorMessage" class="hidden mx-8 mt-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+            <span id="errorText"></span>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="px-6 border-b border-gray-200 bg-white sticky top-0 z-10">
+            <div class="flex space-x-8">
+                <button class="tab-btn active py-4 px-1 border-b-2 border-transparent font-medium text-sm hover:text-gray-700 transition-colors focus:outline-none flex items-center gap-2" id="tab-basic" onclick="switchTab('basic')">
+                    <svg class="h-5 w-5 text-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Informasi Dasar
+                </button>
+                <button class="tab-btn py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 transition-colors focus:outline-none flex items-center gap-2" id="tab-contact" onclick="switchTab('contact')">
+                    <svg class="h-5 w-5 text-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Kontak
+                </button>
+                <button class="tab-btn py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 transition-colors focus:outline-none flex items-center gap-2" id="tab-social" onclick="switchTab('social')">
+                    <svg class="h-5 w-5 text-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m9.032 4.026a9.001 9.001 0 01-7.432 0m9.032-4.026A9.001 9.001 0 0112 3c-4.474 0-8.268 3.12-9.032 7.326m0 4.026A9.001 9.001 0 0012 21c4.474 0 8.268-3.12 9.032-7.326" />
+                    </svg>
+                    Sosial Media
+                </button>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <form id="distroForm">
+            <input type="hidden" id="id_distro" name="id_distro">
+            
+            <div class="p-6" style="min-height: 200px;">
+                <!-- Tab 1: Informasi Dasar -->
+                <div class="tab-content active grid-cols-12 gap-4" id="content-basic">
+                    <div class="col-span-12">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700" for="nama_distro">Nama Distro</label>
+                        <div class="relative">
+                            <input class="w-full rounded-md border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-primary shadow-sm h-10 pr-10" id="nama_distro" name="nama_distro" placeholder="Masukkan nama distro" type="text" required>
+                            <i class="fas fa-store absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="col-span-12">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700" for="slogan">Slogan</label>
+                        <div class="relative">
+                            <input class="w-full rounded-md border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-primary shadow-sm h-10 pr-10" id="slogan" name="slogan" placeholder="Masukkan slogan distro" type="text">
+                            <i class="fas fa-quote-left absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="col-span-12">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700" for="alamat">Alamat</label>
+                        <div class="relative">
+                            <input class="w-full rounded-md border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-primary shadow-sm h-10 pr-10" id="alamat" name="alamat" placeholder="Masukkan alamat lengkap" type="text" required>
+                            <i class="fas fa-map-marker-alt absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="col-span-12 md:col-span-6">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700" for="kota">Kota</label>
+                        <div class="relative">
+                            <input class="w-full rounded-md border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-primary shadow-sm h-10 pr-10" id="kota" name="kota" placeholder="Masukkan kota" type="text" required>
+                            <i class="fas fa-city absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="col-span-12 md:col-span-6">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700" for="provinsi">Provinsi</label>
+                        <div class="relative">
+                            <input class="w-full rounded-md border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-primary shadow-sm h-10 pr-10" id="provinsi" name="provinsi" placeholder="Masukkan provinsi" type="text" required>
+                            <i class="fas fa-map absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="col-span-12">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700" for="gps">GPS (Latitude, Longitude)</label>
+                        <div class="relative">
+                            <input class="w-full rounded-md border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-primary shadow-sm h-10 pr-10" id="gps" name="gps" placeholder="Contoh: -6.2088, 106.8456" type="text">
+                            <i class="fas fa-globe absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="col-span-12">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700">Lokasi Google Maps</label>
+                        <div class="w-full h-64 rounded-lg overflow-hidden border border-gray-300">
+                            <iframe 
+                                id="mapsFrame"
+                                src=""
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Kontak -->
+                <div class="tab-content grid-cols-12 gap-4 hidden" id="content-contact">
+                    <div class="col-span-12">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700" for="no_telepon">Nomor Telepon</label>
+                        <div class="relative">
+                            <input class="w-full rounded-md border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-primary shadow-sm h-10 pr-10" id="no_telepon" name="no_telepon" placeholder="Contoh: +62 21 1234 5678" type="text">
+                            <i id="phone-icon" class="fas fa-phone absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <a id="phone-link" href="#" class="fas fa-phone absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-600 hover:text-blue-800 hidden"></a>
+                        </div>
+                    </div>
+                    <div class="col-span-12">
+                        <label class="block text-sm font-semibold mb-2 text-gray-700" for="email">Email</label>
+                        <div class="relative">
+                            <input class="w-full rounded-md border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-primary shadow-sm h-10 pr-10" id="email" name="email" placeholder="Contoh: info@distro.com" type="email">
+                            <i id="email-icon" class="fas fa-envelope absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <a id="email-link" href="#" class="fas fa-envelope absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-600 hover:text-blue-800 hidden"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Sosial Media -->
+                <div class="tab-content grid-cols-12 gap-4 hidden" id="content-social">
+                    <!-- Kolom 1: Facebook, Twitter -->
+                    <div class="col-span-12 md:col-span-6 space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-gray-700" for="fb">Facebook</label>
+                            <div class="relative">
+                                <input class="w-full rounded-md border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-primary shadow-sm h-10 pr-10" id="fb" name="fb" placeholder="namadistro" type="url">
+                                <i id="fb-icon" class="fab fa-facebook-f absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <a id="fb-link" href="#" target="_blank" class="fab fa-facebook-f absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-600 hover:text-blue-800 hidden"></a>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-gray-700" for="twitter">Twitter</label>
+                            <div class="relative">
+                                <input class="w-full rounded-md border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-primary shadow-sm h-10 pr-10" id="twitter" name="twitter" placeholder="@namadistro" type="url">
+                                <i id="twitter-icon" class="fab fa-twitter absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <a id="twitter-link" href="#" target="_blank" class="fab fa-twitter absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-600 hover:text-blue-800 hidden"></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Kolom 2: Instagram, YouTube -->
+                    <div class="col-span-12 md:col-span-6 space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-gray-700" for="ig">Instagram</label>
+                            <div class="relative">
+                                <input class="w-full rounded-md border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-primary shadow-sm h-10 pr-10" id="ig" name="ig" placeholder="@namadistro" type="url">
+                                <i id="ig-icon" class="fab fa-instagram absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <a id="ig-link" href="#" target="_blank" class="fab fa-instagram absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-600 hover:text-blue-800 hidden"></a>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-gray-700" for="youtube">YouTube</label>
+                            <div class="relative">
+                                <input class="w-full rounded-md border-gray-300 bg-white text-gray-900 focus:border-primary focus:ring-primary shadow-sm h-10 pr-10" id="youtube" name="youtube" placeholder="@namadistro" type="url">
+                                <i id="youtube-icon" class="fab fa-youtube absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <a id="youtube-link" href="#" target="_blank" class="fab fa-youtube absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-600 hover:text-blue-800 hidden"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Footer -->
+        <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-end space-x-3">
+            <button onclick="saveDistro()" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700 transition-colors flex items-center gap-2">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Simpan Perubahan
+            </button>
+        </div>
+    </main>
+
+    <!-- Success/Error Notification -->
+    <div id="notification" class="fixed top-4 right-4 hidden">
+        <div class="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-2">
+            <i class="fas fa-check-circle"></i>
+            <span id="notificationText">Data berhasil disimpan!</span>
+        </div>
+    </div>
+
+    <script>
+        let currentDistro = null;
+
+        // Loading progress functions
+        function showLoading() {
+            const overlay = document.getElementById('loadingOverlay');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            
+            overlay.style.display = 'flex';
+            progressBar.style.width = '0%';
+            progressText.textContent = '0%';
+        }
+
+        function updateProgress(percent) {
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            
+            progressBar.style.width = percent + '%';
+            progressText.textContent = percent + '%';
+        }
+
+        function hideLoading() {
+            const overlay = document.getElementById('loadingOverlay');
+            
+            // Ensure 100% before hiding
+            updateProgress(100);
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 500);
+        }
+
+        // Simulate progress while loading
+        function simulateProgress(callback, duration = 2000) {
+            let progress = 0;
+            const increment = 100 / (duration / 50); // Update every 50ms
+            
+            const interval = setInterval(() => {
+                progress += increment;
+                if (progress >= 95) {
+                    progress = 95; // Stop at 95%, let actual completion take it to 100%
+                    clearInterval(interval);
+                }
+                updateProgress(Math.round(progress));
+            }, 50);
+            
+            return () => {
+                clearInterval(interval);
+                updateProgress(100);
+                callback();
+            };
+        }
+
+        // Load distro data from API
+        async function loadDistroData() {
+            // Start progress simulation (loading already shown in DOMContentLoaded)
+            const completeProgress = simulateProgress(() => {
+                // This callback will be called when we want to complete progress
+            }, 2000);
+            
+            try {
+                const response = await fetch('../api/distro/list.php');
+                const data = await response.json();
+                
+                if (data.success && data.data.length > 0) {
+                    // Ambil data pertama (karena diasumsikan hanya ada satu distro)
+                    currentDistro = data.data[0];
+                    populateForm(currentDistro);
+                } else {
+                    showMessage('info', 'Belum ada data distro. Silakan isi form berikut.');
+                }
+                
+                // Complete progress and hide loading
+                completeProgress();
+                hideLoading();
+            } catch (error) {
+                console.error('Error loading distro data:', error);
+                // Complete progress and hide loading even on error
+                completeProgress();
+                hideLoading();
+                showMessage('error', 'Gagal memuat data distro. Silakan coba kembali.');
+            }
+        }
+
+        // Populate form with distro data
+        function populateForm(distro) {
+            document.getElementById('id_distro').value = distro.id_distro || '';
+            document.getElementById('nama_distro').value = distro.nama_distro || '';
+            document.getElementById('slogan').value = distro.slogan || '';
+            document.getElementById('alamat').value = distro.alamat || '';
+            document.getElementById('kota').value = distro.kota || '';
+            document.getElementById('provinsi').value = distro.provinsi || '';
+            document.getElementById('gps').value = distro.gps || '';
+            document.getElementById('no_telepon').value = distro.no_telepon || '';
+            document.getElementById('email').value = distro.email || '';
+            document.getElementById('fb').value = distro.fb || '';
+            document.getElementById('ig').value = distro.ig || '';
+            document.getElementById('youtube').value = distro.youtube || '';
+            document.getElementById('twitter').value = distro.twitter || '';
+            
+            // Update social media links
+            updateSocialLinks();
+            
+            // Update maps iframe if GPS exists
+            updateMaps(distro.gps);
+        }
+
+        // Update maps iframe
+        function updateMaps(gps) {
+            const mapsFrame = document.getElementById('mapsFrame');
+            if (gps) {
+                const coords = gps.split(',');
+                if (coords.length === 2) {
+                    mapsFrame.src = `https://maps.google.com/maps?q=${coords[0]},${coords[1]}&z=15&output=embed`;
+                }
+            } else {
+                mapsFrame.src = 'https://maps.google.com/maps?q=-6.2088,106.8456&z=15&output=embed';
+            }
+        }
+
+        // Tab functionality
+        function switchTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                content.classList.add('hidden');
+            });
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(button => button.classList.remove('active'));
+            
+            // Show selected tab content
+            const selectedContent = document.getElementById('content-' + tabName);
+            selectedContent.classList.remove('hidden');
+            selectedContent.classList.add('active');
+            
+            // Add active class to clicked tab button
+            document.getElementById('tab-' + tabName).classList.add('active');
+        }
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            
+            mobileMenu.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        // Save distro
+        async function saveDistro() {
+            // Show loading overlay
+            if (!document.getElementById('loadingOverlay').style.display || document.getElementById('loadingOverlay').style.display === 'none') {
+                showLoading();
+            }
+            try {
+                // Get the authentication token
+                const token = localStorage.getItem('admin_token');
+
+                // Check if token exists
+                if (!token) {
+                    hideLoading();
+                    showNotification('Sesi habis. Silakan login kembali.', 'error');
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                    return;
+                }
+
+                const formData = new FormData(document.getElementById('distroForm'));
+
+                // Convert FormData to a regular object
+                const data = {};
+                for (let [key, value] of formData.entries()) {
+                    if(value.trim() !== '') { // Only include fields that have values
+                        data[key] = value.trim();
+                    }
+                }
+
+                // Prepare the API endpoint - we'll always use the update endpoint since there's likely only one distro record
+                const apiUrl = '../api/distro/update.php';
+
+                // Check if id_distro exists
+                if (!data.id_distro) {
+                    showNotification('ID Distro tidak ditemukan. Tidak dapat menyimpan perubahan.', 'error');
+                    return;
+                }
+
+                // Send the data to the API
+                const response = await fetch(apiUrl, {
+                    method: 'POST', // Using POST as it supports both POST and PUT
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                // Handle HTTP errors
+                if (!response.ok) {
+                    const errorResult = await response.json().catch(() => ({message: `HTTP error! Status: ${response.status}`}));
+                    throw new Error(errorResult.message || `HTTP error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (result.success) {
+                    hideLoading();
+                    showNotification(result.message || 'Data distro berhasil diperbarui!', 'success');
+
+                    // Update the current distro data with the updated values
+                    if (result.data) {
+                        currentDistro = result.data;
+                        populateForm(currentDistro); // Update form fields with new values
+                    }
+
+                    // Reload data after saving to refresh any other references
+                    setTimeout(() => {
+                        loadDistroData();
+                    }, 2000);
+                } else {
+                    hideLoading();
+                    showNotification(result.message || 'Terjadi kesalahan saat menyimpan data.', 'error');
+                }
+
+            } catch (error) {
+                console.error('Error saving distro:', error);
+                hideLoading();
+                // Check if it's a custom error message or generic error
+                const errorMessage = error.message || 'Terjadi kesalahan saat menyimpan data. Silakan coba kembali.';
+                showNotification(errorMessage, 'error');
+            }
+        }
+
+
+
+        // Clear messages
+        function clearMessages() {
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('errorMessage').classList.add('hidden');
+        }
+
+        // Show message
+        function showMessage(type, message) {
+            clearMessages();
+            
+            const messageEl = document.getElementById(type === 'success' ? 'successMessage' : 'errorMessage');
+            const textEl = document.getElementById(type === 'success' ? 'successText' : 'errorText');
+
+            textEl.textContent = message;
+            messageEl.classList.remove('hidden');
+            
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                messageEl.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            notificationText.textContent = message;
+            
+            // Update notification color based on type
+            const notificationDiv = notification.querySelector('div');
+            notificationDiv.className = `${type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500'} text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-2`;
+            
+            // Show notification
+            notification.classList.remove('hidden');
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                notification.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Update social media links
+        function updateSocialLinks() {
+            // Update social media links
+            const socialPlatforms = [
+                { id: 'fb', prefix: 'https://www.facebook.com/{fb}' },
+                { id: 'twitter', prefix: 'https://twitter.com/{twitter}' },
+                { id: 'ig', prefix: 'https://www.instagram.com/{ig}/' },
+                { id: 'youtube', prefix: 'https://www.youtube.com/@{youtube}' }
+            ];
+            
+            socialPlatforms.forEach(platform => {
+                const input = document.getElementById(platform.id);
+                const icon = document.getElementById(platform.id + '-icon');
+                const link = document.getElementById(platform.id + '-link');
+                
+                if (input.value.trim()) {
+                    let url = input.value.trim();
+                    
+                    // Remove any existing URL prefixes
+                    url = url.replace(/^https?:\/\/(www\.)?(facebook|fb|twitter|x|instagram|ig|youtube|youtu)\.com\//i, '');
+                    url = url.replace(/^@/, '');
+                    
+                    // Add the correct prefix with placeholder replacement
+                    url = platform.prefix.replace('{' + platform.id + '}', url);
+                    
+                    link.href = url;
+                    link.target = '_blank';
+                    icon.classList.add('hidden');
+                    link.classList.remove('hidden');
+                } else {
+                    icon.classList.remove('hidden');
+                    link.classList.add('hidden');
+                }
+            });
+            
+            // Update phone link
+            const phoneInput = document.getElementById('no_telepon');
+            const phoneIcon = document.getElementById('phone-icon');
+            const phoneLink = document.getElementById('phone-link');
+            
+            if (phoneInput.value.trim()) {
+                let phone = phoneInput.value.trim();
+                // Remove spaces and special characters for tel: protocol
+                phone = phone.replace(/[\s\-\(\)]/g, '');
+                if (!phone.startsWith('tel:') && !phone.startsWith('http')) {
+                    phone = 'tel:' + phone;
+                }
+                phoneLink.href = phone;
+                phoneIcon.classList.add('hidden');
+                phoneLink.classList.remove('hidden');
+            } else {
+                phoneIcon.classList.remove('hidden');
+                phoneLink.classList.add('hidden');
+            }
+            
+            // Update email link
+            const emailInput = document.getElementById('email');
+            const emailIcon = document.getElementById('email-icon');
+            const emailLink = document.getElementById('email-link');
+            
+            if (emailInput.value.trim()) {
+                let email = emailInput.value.trim();
+                if (!email.startsWith('mailto:') && !email.startsWith('http')) {
+                    email = 'mailto:' + email;
+                }
+                emailLink.href = email;
+                emailIcon.classList.add('hidden');
+                emailLink.classList.remove('hidden');
+            } else {
+                emailIcon.classList.remove('hidden');
+                emailLink.classList.add('hidden');
+            }
+        }
+
+        // Update maps when GPS changes
+        document.getElementById('gps').addEventListener('input', function(e) {
+            updateMaps(e.target.value);
+        });
+
+        // Add event listeners for social media inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get admin name from localStorage
+            const currentAdmin = JSON.parse(localStorage.getItem('admin_data') || '{}');
+            const adminName = currentAdmin.username || 'Admin User';
+            document.getElementById('adminName').textContent = adminName;
+
+            // Load distro data with loading
+            showLoading();
+            loadDistroData();
+            
+            // Add event listeners to social media inputs
+            const socialInputs = ['fb', 'twitter', 'ig', 'youtube'];
+            socialInputs.forEach(platform => {
+                const input = document.getElementById(platform);
+                if (input) {
+                    input.addEventListener('input', function() {
+                        updateSocialLinks();
+                    });
+                }
+            });
+            
+            // Add event listeners to email and phone inputs
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('no_telepon');
+            
+            if (emailInput) {
+                emailInput.addEventListener('input', updateSocialLinks);
+            }
+            
+            if (phoneInput) {
+                phoneInput.addEventListener('input', updateSocialLinks);
+            }
+        });
+
+        // Logout function
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Debug function to test save functionality (optional)
+        function debugSaveDistro() {
+            console.log("Debug: Testing save function with current form data");
+            const formData = new FormData(document.getElementById('distroForm'));
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                if(value.trim() !== '') {
+                    data[key] = value.trim();
+                }
+            }
+            console.log("Data to be sent:", data);
+            saveDistro();
+        }
+    </script>
+</body>
+</html>

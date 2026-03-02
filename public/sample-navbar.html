@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>APRIL - Women's Clothing</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <style type="text/tailwindcss">
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#d41152",
+            "background-light": "#f8f6f6",
+            "background-dark": "#221016",
+            "foreground-light": "#1b0d12",
+            "foreground-dark": "#f8f6f6",
+            "secondary-light": "#9a4c66",
+            "secondary-dark": "#e0b8c6",
+            "surface-light": "#f3e7eb",
+            "surface-dark": "#3a212a"
+          },
+          fontFamily: {
+            display: ["Manrope", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark">
+  <div class="relative flex min-h-screen w-full flex-col">
+
+    <main class="flex-grow">
+      <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Breadcrumb -->
+        <nav class="flex text-sm text-secondary-light dark:text-secondary-dark mb-6">
+          <a href="#" class="hover:text-primary transition-colors">Home</a>
+          <span class="mx-2">/</span>
+          <span class="font-medium text-foreground-light dark:text-foreground-dark">
+            Women's Clothing
+          </span>
+        </nav>
+
+        <!-- Header + Filter -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 border-b border-surface-light dark:border-surface-dark/50 pb-6">
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-2">
+              Women's Clothing
+            </h1>
+            <p class="text-secondary-light dark:text-secondary-dark">
+              Discover our latest collection of timeless pieces designed for the modern woman.
+            </p>
+          </div>
+
+          <!-- FILTER -->
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="text-sm font-medium mr-1 hidden sm:inline-block">
+              Filter by:
+            </span>
+
+            <!-- Price -->
+            <div class="relative">
+              <button
+                type="button"
+                class="filter-btn flex items-center gap-2 px-4 py-2 bg-surface-light dark:bg-surface-dark rounded-full text-sm font-medium"
+                data-target="price-filter"
+              >
+                Price
+                <span class="material-symbols-outlined text-base">expand_more</span>
+              </button>
+
+              <div
+                id="price-filter"
+                class="filter-menu absolute z-20 mt-2 w-48 rounded-lg bg-white dark:bg-surface-dark shadow-lg hidden"
+              >
+                <ul class="py-2 text-sm">
+                  <li class="px-4 py-2 cursor-pointer hover:bg-surface-light dark:hover:bg-background-dark">Under $50</li>
+                  <li class="px-4 py-2 cursor-pointer hover:bg-surface-light dark:hover:bg-background-dark">$50 – $100</li>
+                  <li class="px-4 py-2 cursor-pointer hover:bg-surface-light dark:hover:bg-background-dark">$100 – $200</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Size -->
+            <div class="relative">
+              <button
+                type="button"
+                class="filter-btn flex items-center gap-2 px-4 py-2 bg-surface-light dark:bg-surface-dark rounded-full text-sm font-medium"
+                data-target="size-filter"
+              >
+                Size
+                <span class="material-symbols-outlined text-base">expand_more</span>
+              </button>
+
+              <div
+                id="size-filter"
+                class="filter-menu absolute z-20 mt-2 w-32 rounded-lg bg-white dark:bg-surface-dark shadow-lg hidden"
+              >
+                <ul class="py-2 text-sm">
+                  <li class="px-4 py-2 cursor-pointer hover:bg-surface-light dark:hover:bg-background-dark">XS</li>
+                  <li class="px-4 py-2 cursor-pointer hover:bg-surface-light dark:hover:bg-background-dark">S</li>
+                  <li class="px-4 py-2 cursor-pointer hover:bg-surface-light dark:hover:bg-background-dark">M</li>
+                  <li class="px-4 py-2 cursor-pointer hover:bg-surface-light dark:hover:bg-background-dark">L</li>
+                  <li class="px-4 py-2 cursor-pointer hover:bg-surface-light dark:hover:bg-background-dark">XL</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Brand -->
+            <div class="relative">
+              <button
+                type="button"
+                class="filter-btn flex items-center gap-2 px-4 py-2 bg-surface-light dark:bg-surface-dark rounded-full text-sm font-medium"
+                data-target="brand-filter"
+              >
+                Brand
+                <span class="material-symbols-outlined text-base">expand_more</span>
+              </button>
+
+              <div
+                id="brand-filter"
+                class="filter-menu absolute z-20 mt-2 w-40 rounded-lg bg-white dark:bg-surface-dark shadow-lg hidden"
+              >
+                <ul class="py-2 text-sm">
+                  <li class="px-4 py-2 cursor-pointer hover:bg-surface-light dark:hover:bg-background-dark">APRIL</li>
+                  <li class="px-4 py-2 cursor-pointer hover:bg-surface-light dark:hover:bg-background-dark">Studio Wear</li>
+                  <li class="px-4 py-2 cursor-pointer hover:bg-surface-light dark:hover:bg-background-dark">Urban Style</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="h-6 w-px bg-surface-dark/10 dark:bg-surface-light/10 mx-2"></div>
+
+            <!-- Sort -->
+            <select class="form-select border-none bg-transparent py-2 pl-2 pr-8 text-sm font-medium focus:ring-0 cursor-pointer">
+              <option>Sort by: Featured</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Newest</option>
+            </select>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+  </div>
+
+  <!-- FILTER SCRIPT -->
+  <script>
+    document.addEventListener("click", function (e) {
+      const buttons = document.querySelectorAll(".filter-btn");
+      const menus = document.querySelectorAll(".filter-menu");
+
+      buttons.forEach((btn) => {
+        const target = document.getElementById(btn.dataset.target);
+
+        if (btn.contains(e.target)) {
+          menus.forEach((menu) => {
+            if (menu !== target) menu.classList.add("hidden");
+          });
+          target.classList.toggle("hidden");
+        }
+      });
+
+      if (![...buttons].some((btn) => btn.contains(e.target))) {
+        menus.forEach((menu) => menu.classList.add("hidden"));
+      }
+    });
+  </script>
+</body>
+</html>

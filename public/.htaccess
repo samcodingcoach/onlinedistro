@@ -1,0 +1,33 @@
+# Apache Configuration for Public Directory
+# Place this file in /public directory
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /public/
+    
+    # Front Controller - route all non-file requests to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# Disable Directory Browsing
+Options -Indexes
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# PHP Settings
+<IfModule mod_php.c>
+    php_flag expose_php Off
+</IfModule>
+
+# Protect sensitive files
+<FilesMatch "\.(env|log|sql|bak|config|ini)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

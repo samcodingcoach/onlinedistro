@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>All Categories - FashionBrand</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d41152",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221016",
+                        "text-main": "#1b0d12",
+                        "text-secondary": "#9a4c66",
+                        "border-color": "#f3e7eb",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .category-card:hover .category-image {
+            transform: scale(1.05);
+        }
+        .category-card:hover .category-title {
+            color: #d41152;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main dark:text-white transition-colors duration-200">
+    <div class="flex min-h-screen w-full flex-col">
+        <!-- Top Navigation Bar -->
+
+        <main class="flex-1 flex flex-col items-center w-full">
+            <div class="w-full max-w-[1440px] px-4 md:px-10 py-6 md:py-10 flex flex-col gap-8">
+
+                <!-- Page Header & Filters -->
+                <div class="flex flex-col gap-6">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border-color dark:border-gray-800 pb-6">
+                        <div class="flex flex-col gap-2">
+                            <h1 class="text-3xl md:text-4xl font-extrabold text-text-main dark:text-white tracking-tight">Shop by Category</h1>
+                            <p class="text-text-secondary dark:text-gray-400 max-w-2xl">
+                                Explore our wide range of collections designed for every occasion. From summer essentials to winter layers.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Categories Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-10">
+                    <!-- Category Item 1 -->
+                    <a class="category-card group flex flex-col gap-3 cursor-pointer" href="#">
+                        <div class="relative aspect-[3/4] w-full overflow-hidden rounded bg-gray-100">
+                            <img alt="Fashion model wearing a vibrant yellow floral summer dress posing outdoors" class="category-image h-full w-full object-cover transition-transform duration-500 ease-out" data-alt="Fashion model wearing a vibrant yellow floral summer dress posing outdoors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4VZ4a-yWWYAyWMKG0JALzyskgl43Dkh17xpKG_CObyUSiii-4HsMqi5n4L2zqVEUreVylRWvwhC9FXFLizHxuB1o-kruRd40LQG2_9eiKgGqt8cMestYazKWEu89FOnrF1Zd0298ks8Lxt9zv1QjGj2uQGdZkqvoS_PtP0HtUFVCZkfkVWxwc78W4NKkl83wyzgicF8x8Fq2FMn9ub41SfgYesigkBnT4ey0YtH6QDkDWj8wFyDyO8zJ9DFehZiAiqHplLdv9wjQ"/>
+                            <div class="absolute inset-0 bg-black/5 dark:bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="category-title text-lg font-bold text-text-main dark:text-white transition-colors duration-200">Summer Dresses</h3>
+                            <span class="text-sm text-text-secondary font-medium">120 items</span>
+                        </div>
+                    </a>
+                    <!-- Category Item 2 -->
+                    <a class="category-card group flex flex-col gap-3 cursor-pointer" href="#">
+                        <div class="relative aspect-[3/4] w-full overflow-hidden rounded bg-gray-100">
+                            <img alt="Close up of a woman wearing a beige trench coat and holding a leather handbag" class="category-image h-full w-full object-cover transition-transform duration-500 ease-out" data-alt="Close up of a woman wearing a beige trench coat and holding a leather handbag" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACK41PtdmAcTrAH8K0A4lhluqyLSk25ODIEc0MHMah5sTjGzh5TjmGA52Q7neKc0sD2fMaivMIOm9U5Z_ZKycusAHbwAnGu5Mz4XXKF5E8ESXKICRQ9N9ZYzfA99575fMQVNbL3YNivWetCpn7LyxY59PMFUjnLiAQG6NYBShVJhB3y_2N90munZfmUlyyq-fjgyglEiOlTUz5Bnhx-3tFGhS9RUz7pEJonQ_7YK0KVBWmx_cUEF0GYS7TG0teFfplD1OtuIxi7AI"/>
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="category-title text-lg font-bold text-text-main dark:text-white transition-colors duration-200">Coats &amp; Jackets</h3>
+                            <span class="text-sm text-text-secondary font-medium">85 items</span>
+                        </div>
+                    </a>
+                    <!-- Category Item 3 -->
+                    <a class="category-card group flex flex-col gap-3 cursor-pointer" href="#">
+                        <div class="relative aspect-[3/4] w-full overflow-hidden rounded bg-gray-100">
+                            <img alt="White knit sweater folded neatly on a wooden surface" class="category-image h-full w-full object-cover transition-transform duration-500 ease-out" data-alt="White knit sweater folded neatly on a wooden surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANzGH1pZ13Kzd_5N4RJUeOVSxZjB5qL6KbYX0WSXH_ZspWXNfGmedbNNtaR3aDzM78uuqv-705-ORgzBE9Puw79VskCsXu3NQPGOx6T84SXAiiSlXxyl5FA72brwnPgn3lhl2o1A_ZbP1fqMC9RkaaurkS7DtIkj8DYFeLAAeksBEgpqFU9hdJ-H4qUMO9Swko_mLTwWrDQk2a4p9W37PouHM9iQUUy4iM4IOwWtzFHbkNu2qse0K39p6ZXTJS1bVQtt-BHKKLAyE"/>
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="category-title text-lg font-bold text-text-main dark:text-white transition-colors duration-200">Knitwear</h3>
+                            <span class="text-sm text-text-secondary font-medium">45 items</span>
+                        </div>
+                    </a>
+                    <!-- Category Item 4 -->
+                    <a class="category-card group flex flex-col gap-3 cursor-pointer" href="#">
+                        <div class="relative aspect-[3/4] w-full overflow-hidden rounded bg-gray-100">
+                            <img alt="Red high heel shoes on a white background with dramatic lighting" class="category-image h-full w-full object-cover transition-transform duration-500 ease-out" data-alt="Red high heel shoes on a white background with dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYOIIeq-xaYdYwMAdGuaxvVcZwoWqwp4Td3XmsiSEyCH-GhTkWWhacryTGamsbRTHrcIrNuIZaFeg5iqFK2U12DZOJX4SuSjF7tWjs56MsICOU756g--x_AzlKoZgQtISdWM-V8H6qN6IPuKRrPmtgbBNk4U8F0HMHHsXEAdetQxA5z_E4A2GCkStgDRgYmhH8_0Yk17E-gvoieHkuyT9qxMrYwoE5vo4iKqoQY7-n8_GFASbTmXFB7h6un3Rgim-hgrtNgTIokxk"/>
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="category-title text-lg font-bold text-text-main dark:text-white transition-colors duration-200">Shoes</h3>
+                            <span class="text-sm text-text-secondary font-medium">210 items</span>
+                        </div>
+                    </a>
+                    <!-- Category Item 5 -->
+                    <a class="category-card group flex flex-col gap-3 cursor-pointer" href="#">
+                        <div class="relative aspect-[3/4] w-full overflow-hidden rounded bg-gray-100">
+                            <img alt="Woman carrying a stylish brown leather tote bag" class="category-image h-full w-full object-cover transition-transform duration-500 ease-out" data-alt="Woman carrying a stylish brown leather tote bag" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1yF3W70xae5Il3LPpJID2V-eoxDpjH4Y-xd-QgBaOiingFHB2DQpxktyE_QgEGY67ITMjMKnGGwQ5HSXt8fVOYwnaQ6lXdfBtwoFbWiNzBlHnGOuSfpl6QUWEuhskvfrkA7Vm5YtDdpfdDNrtT8d9xe6NCVuZxZq86Uu6QNdkbw8hnMekpi58_kLA6xobox-rBHpIrozNjEGRAZI9NSGnhZJJt6ZVRUTxkHlhyNZqV9njU-oM_RWHI3skGozkFToL4HEQQg1tLr8"/>
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="category-title text-lg font-bold text-text-main dark:text-white transition-colors duration-200">Bags</h3>
+                            <span class="text-sm text-text-secondary font-medium">95 items</span>
+                        </div>
+                    </a>
+                </div>
+                <!-- Pagination -->
+                <div class="mt-12 flex flex-col md:flex-row items-center justify-between border-t border-border-color dark:border-gray-800 pt-8 gap-4 w-full">
+                    
+                    <div class="flex items-center gap-1">
+                        <button class="flex items-center justify-center size-9 rounded hover:bg-[#f3e7eb] dark:hover:bg-gray-800 text-text-main dark:text-white disabled:opacity-50" disabled="">
+                            <span class="material-symbols-outlined text-sm">chevron_left</span>
+                        </button>
+                        <button class="flex items-center justify-center size-9 rounded bg-primary text-white font-bold text-sm">
+                            1
+                        </button>
+                        <button class="flex items-center justify-center size-9 rounded hover:bg-[#f3e7eb] dark:hover:bg-gray-800 text-text-main dark:text-white font-medium text-sm transition-colors">
+                            2
+                        </button>
+                        <button class="flex items-center justify-center size-9 rounded hover:bg-[#f3e7eb] dark:hover:bg-gray-800 text-text-main dark:text-white font-medium text-sm transition-colors">
+                            3
+                        </button>
+                        <span class="flex items-center justify-center size-9 text-text-secondary dark:text-gray-500">...</span>
+                        <button class="flex items-center justify-center size-9 rounded hover:bg-[#f3e7eb] dark:hover:bg-gray-800 text-text-main dark:text-white font-medium text-sm transition-colors">
+                            6
+                        </button>
+                        <button class="flex items-center justify-center size-9 rounded hover:bg-[#f3e7eb] dark:hover:bg-gray-800 text-text-main dark:text-white transition-colors">
+                            <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

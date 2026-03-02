@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Admin Distro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <script src="assets/js/admin.js"></script>
+    <style>
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-15px); }
+        }
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header with Navigation -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <!-- Menu Toggle Button -->
+                    <button id="menuToggle" onclick="toggleMenu()" class="lg:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Dashboard</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span id="adminName" class="text-sm text-gray-600 hidden sm:block"></span>
+                    <button onclick="logout()" class="bg-red-500 text-white px-3 py-1 sm:px-4 sm:py-2 rounded hover:bg-red-600 text-sm sm:text-base">Logout</button>
+                </div>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav id="navMenu" class="hidden lg:block border-t pt-4 pb-2">
+                <ul class="flex flex-col lg:flex-row lg:space-x-8 space-y-2 lg:space-y-0">
+                    <li>
+                        <a href="dashboard.html" class="block px-3 py-2 rounded-md bg-blue-50 text-blue-700 hover:bg-blue-100 hover:text-blue-900 font-medium">
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Admin
+                        </a>
+                    </li>
+                    <li>
+                        <a href="kategori.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Kategori
+                        </a>
+                    </li>
+                    <li>
+                        <a href="produk.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Produk
+                        </a>
+                    </li>
+                    <li>
+                        <a href="banner.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Banner
+                        </a>
+                    </li>
+                    <li>
+                        <a href="video.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Video
+                        </a>
+                    </li>
+                    <li>
+                        <a href="distro.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                            Distro
+                        </a>
+                    </li>
+                    <li>
+                        <button onclick="logout()" class="block lg:hidden px-3 py-2 rounded-md text-red-600 hover:bg-red-50 hover:text-red-700 font-medium w-full text-left">
+                            Logout
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="toggleMenu()"></div>
+    
+    <!-- Mobile Navigation Slide -->
+    <div id="mobileMenu" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform -translate-x-full transition-transform duration-300">
+        <div class="p-4 border-b">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-semibold text-gray-900">Menu</h2>
+                <button onclick="toggleMenu()" class="p-2 rounded-md text-gray-600 hover:bg-gray-100">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li>
+                    <a href="dashboard.html" onclick="toggleMenu()" class="block px-3 py-2 rounded-md bg-blue-50 text-blue-700 hover:bg-blue-100 hover:text-blue-900 font-medium">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="admin.html" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Admin
+                    </a>
+                </li>
+                <li>
+                    <a href="kategori.html" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Kategori
+                    </a>
+                </li>
+                <li>
+                    <a href="produk.html" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Produk
+                    </a>
+                </li>
+                <li>
+                    <a href="banner.html" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Banner
+                    </a>
+                </li>
+                <li>
+                    <a href="video.html" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Video
+                    </a>
+                </li>
+                <li>
+                    <a href="distro.html" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-medium">
+                        Distro
+                    </a>
+                </li>
+                <li class="border-t pt-2 mt-4">
+                    <div class="px-3 py-2 text-sm text-gray-600">
+                        User: <span id="mobileAdminName" class="font-medium"></span>
+                    </div>
+                    <button onclick="logout()" class="block w-full px-3 py-2 rounded-md text-red-600 hover:bg-red-50 hover:text-red-700 font-medium text-left">
+                        Logout
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Messages -->
+        <div id="successMessage" class="hidden mb-4 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
+            <span id="successText"></span>
+        </div>
+        
+        <div id="errorMessage" class="hidden mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+            <span id="errorText"></span>
+        </div>
+
+        <!-- Page Header with Backup Button -->
+        <div class="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">Dashboard Admin</h1>
+                <p class="mt-2 text-gray-600">Kelola dan pantau aplikasi distro Anda</p>
+            </div>
+            <button onclick="downloadBackup()" id="backupBtn"
+                    class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 flex items-center justify-center shadow-lg">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                </svg>
+                <span id="backupBtnText" class="font-semibold">Backup Database</span>
+            </button>
+        </div>
+
+        <!-- Dashboard Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+
+            <!-- Placeholder cards for other features -->
+            <div class="bg-white shadow rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-chart-line text-green-600 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h2 class="text-lg font-semibold text-gray-900">Statistik</h2>
+                        <p class="text-sm text-gray-500">Akan segera hadir</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white shadow rounded-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-cog text-purple-600 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h2 class="text-lg font-semibold text-gray-900">Pengaturan</h2>
+                        <p class="text-sm text-gray-500">Akan segera hadir</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="bg-white shadow rounded-lg p-6">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Informasi Backup Database</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+                <div>
+                    <h4 class="font-semibold text-gray-700 mb-2">Petunjuk Backup:</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Backup akan mencakup semua tabel dan data</li>
+                        <li>File backup diunduh dalam format .sql</li>
+                        <li>Nama file mencakup timestamp</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-700 mb-2">Rekomendasi:</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Lakukan backup secara berkala</li>
+                        <li>Simpan file di lokasi aman</li>
+                        <li>Verifikasi file backup setelah download</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let currentToken = localStorage.getItem('admin_token');
+        let currentAdmin = JSON.parse(localStorage.getItem('admin_data') || '{}');
+
+        // Check auth
+        if (!currentToken) {
+            window.location.href = 'login.html';
+        }
+
+        // Display admin name
+        if (currentAdmin.username) {
+            document.getElementById('adminName').textContent = currentAdmin.username;
+            document.getElementById('mobileAdminName').textContent = currentAdmin.username;
+        }
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            
+            if (mobileMenu.classList.contains('-translate-x-full')) {
+                // Open menu
+                mobileMenu.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                // Close menu
+                mobileMenu.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Show message
+        function showMessage(type, message) {
+            const messageEl = type === 'success' ? 
+                document.getElementById('successMessage') : 
+                document.getElementById('errorMessage');
+            const textEl = type === 'success' ? 
+                document.getElementById('successText') : 
+                document.getElementById('errorText');
+            
+            textEl.textContent = message;
+            messageEl.classList.remove('hidden');
+            
+            setTimeout(() => {
+                messageEl.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Download backup
+        async function downloadBackup() {
+            const backupBtn = document.getElementById('backupBtn');
+            const backupBtnText = document.getElementById('backupBtnText');
+            
+            // Show loading state
+            backupBtn.disabled = true;
+            backupBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            backupBtnText.textContent = 'Membuat backup...';
+            
+            // Hide any existing messages
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('errorMessage').classList.add('hidden');
+            
+            try {
+                // Create a temporary link element
+                const link = document.createElement('a');
+                link.href = '../config/backup_db.php?token=' + encodeURIComponent(currentToken);
+                
+                // Set download attribute to trigger download
+                const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
+                link.download = `backup_${timestamp}.sql`;
+                
+                // Append to body, click, and remove
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Show success message
+                showMessage('success', 'Backup database berhasil diunduh! Periksa folder download Anda.');
+                
+            } catch (error) {
+                console.error('Backup error:', error);
+                showMessage('error', 'Gagal membuat backup: ' + error.message);
+            } finally {
+                // Restore button state
+                backupBtn.disabled = false;
+                backupBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                backupBtnText.textContent = 'Backup Database';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                localStorage.removeItem('admin_token');
+                localStorage.removeItem('admin_data');
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+</body>
+</html>

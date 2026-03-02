@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d41152",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221016",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative w-full h-screen bg-gray-200 dark:bg-gray-800 blur-sm">
+<div class="p-8">
+<h1 class="text-4xl font-bold text-gray-800 dark:text-gray-200">Our Collection</h1>
+<div class="grid grid-cols-3 gap-4 mt-8">
+<div class="w-full h-64 bg-gray-300 dark:bg-gray-700 rounded-lg"></div>
+<div class="w-full h-64 bg-gray-300 dark:bg-gray-700 rounded-lg"></div>
+<div class="w-full h-64 bg-gray-300 dark:bg-gray-700 rounded-lg"></div>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+<div class="relative flex flex-col w-full max-w-4xl h-auto max-h-[90vh] bg-background-light dark:bg-background-dark rounded-xl shadow-2xl overflow-hidden">
+<div class="absolute top-0 right-0 z-10 p-2">
+<button class="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white transition-colors rounded-full">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex flex-col md:flex-row w-full overflow-y-auto">
+<div class="w-full md:w-1/2 p-4 sm:p-6">
+<div class="flex flex-col gap-4">
+<div class="relative group">
+<div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg" data-alt="Model wearing The Florence Silk Midi Dress" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBMRUiRidlwkcpQSqDMl7tyInKflJ5vCEp-SQe7fLH9x600iHpfQUM4Ex3W3yXXz6luz6gzkPKRNWTdctJqAnWfRkCq-qzqFyZYcMVNTlo_HNeITA6Oi1fAl2-sGxSlZu5a7C9hu9GLaF-DrL_9jxrSDS1o1jbFly1bp2D2C0GEz4KTWvVpzN1nFaoBbhpATL0sWumELNsXwnmMMXaOFLdUyzxwdkvebpQBWnMnqOGSPfKXkLtp-NBNkfwZJgU2buym9f3qLlqp3qs");'></div>
+<button class="absolute top-1/2 left-2 -translate-y-1/2 p-2 bg-white/70 dark:bg-black/50 text-gray-800 dark:text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<button class="absolute top-1/2 right-2 -translate-y-1/2 p-2 bg-white/70 dark:bg-black/50 text-gray-800 dark:text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">arrow_forward_ios</span>
+</button>
+</div>
+<div class="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+<div class="flex items-stretch gap-3">
+<div class="flex h-full flex-1 flex-col rounded-lg border-2 border-primary min-w-20 cursor-pointer">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded" data-alt="Side view of the silk dress" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAh2PYDH0RTm51gNJV6-KKW2chJEJzlwzY9GdT9MDZkZ7H9aHNPT1-S4-YqBL-lmieCsqCEGDtZQZlI1fj9xwkVqd6ItNKx4w7pIaHb7d9qz4BCXDU1y4uWP1EdUW3koN7h85zVfWzlWZkcjzq9s-xp3Mc4oYT67lESjYPs5Uo3rxg26uVMSIWVQR183qCb5iB-a7_B5Y5eEQ3Pm5oXrHK5KypKavN99TW57N3NX1UwOdsvzE450DtgYEip_DnpNVGtOTSsE_pxvcg");'></div>
+</div>
+<div class="flex h-full flex-1 flex-col rounded-lg border-2 border-transparent hover:border-primary/50 min-w-20 cursor-pointer">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded" data-alt="Back view of the silk dress" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAp2lfWNMuiF-iwGaxYpNUy3dcjMpThFXC-kkYTILkJ3-XgtxNpxrNm3C2NPRQNCNoDakHTVSAC7zdabErI4zt928v9qo7kqGkZtXA0xYo_UJr9uLQPWi-5b9We8iTsFyKyMXv6ASGEzaEybXMz8tsj3gQ-VITakA1i94wdwniDN0SH9fWGMedBTLoYEYMA3I6z9_XTVSIUShCc-XfrGrNup9zUHBj5OHXu4aN4BdKCAo38bnnCxOEOXtyM6NXxTcPpGvXAJgQolGc");'></div>
+</div>
+<div class="flex h-full flex-1 flex-col rounded-lg border-2 border-transparent hover:border-primary/50 min-w-20 cursor-pointer">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded" data-alt="Close-up of the dress fabric" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCsiNvhqMV0AQgf2XQjoFMmyIgXuxqS0Jz0LyVgwk4THlWmM2oiR2LSi3E9NuZ7uSOGC_1F1n9LkXcnRmzi6prnqNXXW160nqUjPGtQGAnduutG8WwD85Msi-h7QRinB2vwj1AsFijZyGFRiLyJOXHqMsOxPV2LByRpusscd2gIU3csXyVHPU49kVFWuP5t5Tjp8y6CdJ23doKZHrnNgHuBP7pheaf6ETSjWQCj9pTiMX6R50zpfGO2LYt7V6muChsemXfwhkQG8OA");'></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 p-4 sm:p-6 flex flex-col">
+<p class="text-primary dark:text-primary/90 text-sm font-medium leading-normal tracking-wide">Aria Lane</p>
+<div class="flex flex-wrap justify-between gap-3 pt-1 pb-3">
+<h1 class="text-gray-900 dark:text-gray-50 text-[28px] font-bold leading-tight">The Florence Silk Midi Dress</h1>
+</div>
+<div class="flex items-baseline gap-4 pb-4">
+<h3 class="text-primary dark:text-primary tracking-tight text-4xl font-extrabold leading-none">$150.00</h3>
+<p class="text-gray-400 dark:text-gray-500 text-xl font-medium leading-normal line-through">$200.00</p>
+</div>
+<div class="flex items-center gap-2 mb-6">
+<span class="w-3 h-3 bg-green-500 rounded-full"></span>
+<p class="text-green-600 dark:text-green-400 text-sm font-semibold">In Stock</p>
+</div>
+<div class="grid grid-cols-2 gap-4 p-4 mb-6 rounded-lg bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10">
+<div>
+<p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">Ukuran</p>
+<p class="text-gray-900 dark:text-gray-200 font-medium mt-1">All Size (M-L)</p>
+</div>
+<div>
+<p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">Kode Produk</p>
+<p class="text-gray-900 dark:text-gray-200 font-medium mt-1">FL-SLK-023</p>
+</div>
+</div>
+<p class="text-gray-600 dark:text-gray-400 text-base leading-relaxed mb-8">
+                        Crafted from the finest charmeuse silk, this midi dress drapes beautifully over the body. Featuring a delicate cowl neckline and adjustable spaghetti straps for a perfect fit.
+                    </p>
+<button class="w-full py-4 px-6 rounded-full bg-primary hover:bg-[#b00e44] text-white text-lg font-bold shadow-lg shadow-primary/25 hover:shadow-xl active:scale-[0.99] transition-all flex items-center justify-center gap-2 mb-4">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span>Add to Cart</span>
+</button>
+<div class="mt-auto pt-6 border-t border-gray-200 dark:border-white/10">
+<p class="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide text-xs">Shop this look on</p>
+<div class="grid grid-cols-2 gap-3">
+<a class="flex items-center justify-center gap-2 h-12 px-4 rounded-full bg-[#ee4d2d] text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#d73211] transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+<span>Shopee</span>
+</a>
+<a class="flex items-center justify-center gap-2 h-12 px-4 rounded-full bg-black dark:bg-white dark:text-black dark:hover:bg-gray-200 text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+<span>TikTok</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

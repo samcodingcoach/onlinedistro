@@ -1,0 +1,482 @@
+[02-Mar-2026 12:41:08 Asia/Makassar] Update Produk - id_produk extracted: 51
+[02-Mar-2026 14:01:39 Asia/Makassar] FILES array keys: gambar1, gambar2
+[02-Mar-2026 14:01:39 Asia/Makassar] Attempting to upload gambar1 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772431297355_01.jpg
+[02-Mar-2026 14:01:39 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:01:39 Asia/Makassar] File temp location: /tmp/phpfavGjs
+[02-Mar-2026 14:01:39 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:01:39 Asia/Makassar] Successfully uploaded gambar1 as: produk_1772431297355_01.jpg
+[02-Mar-2026 14:01:39 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:01:39 Asia/Makassar] Attempting to upload gambar2 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772431297355_02.jpg
+[02-Mar-2026 14:01:39 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:01:39 Asia/Makassar] File temp location: /tmp/php0tbjSZ
+[02-Mar-2026 14:01:39 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:01:39 Asia/Makassar] Successfully uploaded gambar2 as: produk_1772431297355_02.jpg
+[02-Mar-2026 14:01:39 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:01:39 Asia/Makassar] POST keys received: kode_produk, nama_produk, merk, id_kategori, deskripsi, ukuran, jumlah_stok, terjual, shopee_link, tiktok_link, harga_aktif, harga_coret, in_stok, favorit, aktif, id_admin
+[02-Mar-2026 14:01:39 Asia/Makassar] FILES keys received: gambar1, gambar2
+[02-Mar-2026 14:01:39 Asia/Makassar] Extracted images - gambar1: produk_1772431297355_01.jpg, gambar2: produk_1772431297355_02.jpg, gambar3: 
+[02-Mar-2026 14:01:39 Asia/Makassar] SQL Query: INSERT INTO produk (
+    id_kategori,
+    nama_produk,
+    merk,
+    kode_produk,
+    deskripsi,
+    harga_aktif,
+    harga_coret,
+    ukuran,
+    warna,
+    in_stok,
+    jumlah_stok,
+    gambar1,
+    gambar2,
+    gambar3,
+    shopee_link,
+    tiktok_link,
+    aktif,
+    favorit,
+    id_admin,
+    terjual
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[02-Mar-2026 14:01:39 Asia/Makassar] Parameters: id_kategori=1, nama_produk=Want It | Abaya Zipper mote Cd 55 (Raya Series 2026), warna=, gambar1=produk_1772431297355_01.jpg, gambar2=produk_1772431297355_02.jpg, gambar3=
+[02-Mar-2026 14:06:03 Asia/Makassar] FILES array keys: gambar1, gambar2
+[02-Mar-2026 14:06:03 Asia/Makassar] Attempting to upload gambar1 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772431564045_01.jpg
+[02-Mar-2026 14:06:03 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:06:03 Asia/Makassar] File temp location: /tmp/phpEIcbie
+[02-Mar-2026 14:06:03 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:06:03 Asia/Makassar] Successfully uploaded gambar1 as: produk_1772431564045_01.jpg
+[02-Mar-2026 14:06:03 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:06:03 Asia/Makassar] Attempting to upload gambar2 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772431564045_02.jpg
+[02-Mar-2026 14:06:03 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:06:03 Asia/Makassar] File temp location: /tmp/phpMJvcGB
+[02-Mar-2026 14:06:03 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:06:03 Asia/Makassar] Successfully uploaded gambar2 as: produk_1772431564045_02.jpg
+[02-Mar-2026 14:06:03 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:06:03 Asia/Makassar] POST keys received: kode_produk, nama_produk, merk, id_kategori, deskripsi, ukuran, jumlah_stok, terjual, shopee_link, tiktok_link, harga_aktif, harga_coret, in_stok, favorit, aktif, id_admin
+[02-Mar-2026 14:06:03 Asia/Makassar] FILES keys received: gambar1, gambar2
+[02-Mar-2026 14:06:03 Asia/Makassar] Extracted images - gambar1: produk_1772431564045_01.jpg, gambar2: produk_1772431564045_02.jpg, gambar3: 
+[02-Mar-2026 14:06:03 Asia/Makassar] SQL Query: INSERT INTO produk (
+    id_kategori,
+    nama_produk,
+    merk,
+    kode_produk,
+    deskripsi,
+    harga_aktif,
+    harga_coret,
+    ukuran,
+    warna,
+    in_stok,
+    jumlah_stok,
+    gambar1,
+    gambar2,
+    gambar3,
+    shopee_link,
+    tiktok_link,
+    aktif,
+    favorit,
+    id_admin,
+    terjual
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[02-Mar-2026 14:06:03 Asia/Makassar] Parameters: id_kategori=1, nama_produk=Want It - Abaya Malay Brukat cd: 202 (Raya Series 2026), warna=, gambar1=produk_1772431564045_01.jpg, gambar2=produk_1772431564045_02.jpg, gambar3=
+[02-Mar-2026 14:08:49 Asia/Makassar] FILES array keys: gambar1, gambar2, gambar3
+[02-Mar-2026 14:08:49 Asia/Makassar] Attempting to upload gambar1 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772431729955_01.jpg
+[02-Mar-2026 14:08:49 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:08:49 Asia/Makassar] File temp location: /tmp/phpaKFK5V
+[02-Mar-2026 14:08:49 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:08:49 Asia/Makassar] Successfully uploaded gambar1 as: produk_1772431729955_01.jpg
+[02-Mar-2026 14:08:49 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:08:49 Asia/Makassar] Attempting to upload gambar2 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772431729955_02.jpg
+[02-Mar-2026 14:08:49 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:08:49 Asia/Makassar] File temp location: /tmp/php50KG3y
+[02-Mar-2026 14:08:49 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:08:49 Asia/Makassar] Successfully uploaded gambar2 as: produk_1772431729955_02.jpg
+[02-Mar-2026 14:08:49 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:08:49 Asia/Makassar] Attempting to upload gambar3 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772431729955_03.jpg
+[02-Mar-2026 14:08:49 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:08:49 Asia/Makassar] File temp location: /tmp/phpPGJ08X
+[02-Mar-2026 14:08:49 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:08:49 Asia/Makassar] Successfully uploaded gambar3 as: produk_1772431729955_03.jpg
+[02-Mar-2026 14:08:49 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:08:49 Asia/Makassar] POST keys received: kode_produk, nama_produk, merk, id_kategori, deskripsi, ukuran, jumlah_stok, terjual, shopee_link, tiktok_link, harga_aktif, harga_coret, in_stok, favorit, aktif, id_admin
+[02-Mar-2026 14:08:49 Asia/Makassar] FILES keys received: gambar1, gambar2, gambar3
+[02-Mar-2026 14:08:49 Asia/Makassar] Extracted images - gambar1: produk_1772431729955_01.jpg, gambar2: produk_1772431729955_02.jpg, gambar3: produk_1772431729955_03.jpg
+[02-Mar-2026 14:08:49 Asia/Makassar] SQL Query: INSERT INTO produk (
+    id_kategori,
+    nama_produk,
+    merk,
+    kode_produk,
+    deskripsi,
+    harga_aktif,
+    harga_coret,
+    ukuran,
+    warna,
+    in_stok,
+    jumlah_stok,
+    gambar1,
+    gambar2,
+    gambar3,
+    shopee_link,
+    tiktok_link,
+    aktif,
+    favorit,
+    id_admin,
+    terjual
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[02-Mar-2026 14:08:49 Asia/Makassar] Parameters: id_kategori=1, nama_produk=Want It - Gamis Canio Herton (Raya Series 2026), warna=, gambar1=produk_1772431729955_01.jpg, gambar2=produk_1772431729955_02.jpg, gambar3=produk_1772431729955_03.jpg
+[02-Mar-2026 14:11:35 Asia/Makassar] FILES array keys: gambar1, gambar2, gambar3
+[02-Mar-2026 14:11:35 Asia/Makassar] Attempting to upload gambar1 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772431895778_01.jpg
+[02-Mar-2026 14:11:35 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:11:35 Asia/Makassar] File temp location: /tmp/php5fLleZ
+[02-Mar-2026 14:11:35 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:11:35 Asia/Makassar] Successfully uploaded gambar1 as: produk_1772431895778_01.jpg
+[02-Mar-2026 14:11:35 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:11:35 Asia/Makassar] Attempting to upload gambar2 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772431895778_02.jpg
+[02-Mar-2026 14:11:35 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:11:35 Asia/Makassar] File temp location: /tmp/phpmDA8lj
+[02-Mar-2026 14:11:35 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:11:35 Asia/Makassar] Successfully uploaded gambar2 as: produk_1772431895778_02.jpg
+[02-Mar-2026 14:11:35 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:11:35 Asia/Makassar] Attempting to upload gambar3 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772431895778_03.jpg
+[02-Mar-2026 14:11:35 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:11:35 Asia/Makassar] File temp location: /tmp/phpP6iZye
+[02-Mar-2026 14:11:35 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:11:35 Asia/Makassar] Successfully uploaded gambar3 as: produk_1772431895778_03.jpg
+[02-Mar-2026 14:11:35 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:11:35 Asia/Makassar] POST keys received: kode_produk, nama_produk, merk, id_kategori, deskripsi, ukuran, jumlah_stok, terjual, shopee_link, tiktok_link, harga_aktif, harga_coret, in_stok, favorit, aktif, id_admin
+[02-Mar-2026 14:11:35 Asia/Makassar] FILES keys received: gambar1, gambar2, gambar3
+[02-Mar-2026 14:11:35 Asia/Makassar] Extracted images - gambar1: produk_1772431895778_01.jpg, gambar2: produk_1772431895778_02.jpg, gambar3: produk_1772431895778_03.jpg
+[02-Mar-2026 14:11:35 Asia/Makassar] SQL Query: INSERT INTO produk (
+    id_kategori,
+    nama_produk,
+    merk,
+    kode_produk,
+    deskripsi,
+    harga_aktif,
+    harga_coret,
+    ukuran,
+    warna,
+    in_stok,
+    jumlah_stok,
+    gambar1,
+    gambar2,
+    gambar3,
+    shopee_link,
+    tiktok_link,
+    aktif,
+    favorit,
+    id_admin,
+    terjual
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[02-Mar-2026 14:11:35 Asia/Makassar] Parameters: id_kategori=1, nama_produk=Want It - Gamis Tile Vest Brukat A141 (Raya Series 2026), warna=, gambar1=produk_1772431895778_01.jpg, gambar2=produk_1772431895778_02.jpg, gambar3=produk_1772431895778_03.jpg
+[02-Mar-2026 14:14:24 Asia/Makassar] FILES array keys: gambar1, gambar2
+[02-Mar-2026 14:14:24 Asia/Makassar] Attempting to upload gambar1 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432063480_01.jpg
+[02-Mar-2026 14:14:24 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:14:24 Asia/Makassar] File temp location: /tmp/phpXA1PrO
+[02-Mar-2026 14:14:24 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:14:24 Asia/Makassar] Successfully uploaded gambar1 as: produk_1772432063480_01.jpg
+[02-Mar-2026 14:14:24 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:14:24 Asia/Makassar] Attempting to upload gambar2 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432063480_02.jpg
+[02-Mar-2026 14:14:24 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:14:24 Asia/Makassar] File temp location: /tmp/phpWieDAm
+[02-Mar-2026 14:14:24 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:14:24 Asia/Makassar] Successfully uploaded gambar2 as: produk_1772432063480_02.jpg
+[02-Mar-2026 14:14:24 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:14:24 Asia/Makassar] POST keys received: kode_produk, nama_produk, merk, id_kategori, deskripsi, ukuran, jumlah_stok, terjual, shopee_link, tiktok_link, harga_aktif, harga_coret, in_stok, favorit, aktif, id_admin
+[02-Mar-2026 14:14:24 Asia/Makassar] FILES keys received: gambar1, gambar2
+[02-Mar-2026 14:14:24 Asia/Makassar] Extracted images - gambar1: produk_1772432063480_01.jpg, gambar2: produk_1772432063480_02.jpg, gambar3: 
+[02-Mar-2026 14:14:24 Asia/Makassar] SQL Query: INSERT INTO produk (
+    id_kategori,
+    nama_produk,
+    merk,
+    kode_produk,
+    deskripsi,
+    harga_aktif,
+    harga_coret,
+    ukuran,
+    warna,
+    in_stok,
+    jumlah_stok,
+    gambar1,
+    gambar2,
+    gambar3,
+    shopee_link,
+    tiktok_link,
+    aktif,
+    favorit,
+    id_admin,
+    terjual
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[02-Mar-2026 14:14:24 Asia/Makassar] Parameters: id_kategori=1, nama_produk=Want It - Abaya Payet Luxe 023 (Raya Series 2026), warna=, gambar1=produk_1772432063480_01.jpg, gambar2=produk_1772432063480_02.jpg, gambar3=
+[02-Mar-2026 14:17:02 Asia/Makassar] FILES array keys: gambar1, gambar2, gambar3
+[02-Mar-2026 14:17:02 Asia/Makassar] Attempting to upload gambar1 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432223101_01.jpg
+[02-Mar-2026 14:17:02 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:17:02 Asia/Makassar] File temp location: /tmp/phpi2E0th
+[02-Mar-2026 14:17:02 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:17:02 Asia/Makassar] Successfully uploaded gambar1 as: produk_1772432223101_01.jpg
+[02-Mar-2026 14:17:02 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:17:02 Asia/Makassar] Attempting to upload gambar2 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432223101_02.jpg
+[02-Mar-2026 14:17:02 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:17:02 Asia/Makassar] File temp location: /tmp/phpEK5m1X
+[02-Mar-2026 14:17:02 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:17:02 Asia/Makassar] Successfully uploaded gambar2 as: produk_1772432223101_02.jpg
+[02-Mar-2026 14:17:02 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:17:02 Asia/Makassar] Attempting to upload gambar3 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432223101_03.jpg
+[02-Mar-2026 14:17:02 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:17:02 Asia/Makassar] File temp location: /tmp/php5oqsEE
+[02-Mar-2026 14:17:02 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:17:02 Asia/Makassar] Successfully uploaded gambar3 as: produk_1772432223101_03.jpg
+[02-Mar-2026 14:17:02 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:17:02 Asia/Makassar] POST keys received: kode_produk, nama_produk, merk, id_kategori, deskripsi, ukuran, jumlah_stok, terjual, shopee_link, tiktok_link, harga_aktif, harga_coret, in_stok, favorit, aktif, id_admin
+[02-Mar-2026 14:17:02 Asia/Makassar] FILES keys received: gambar1, gambar2, gambar3
+[02-Mar-2026 14:17:02 Asia/Makassar] Extracted images - gambar1: produk_1772432223101_01.jpg, gambar2: produk_1772432223101_02.jpg, gambar3: produk_1772432223101_03.jpg
+[02-Mar-2026 14:17:02 Asia/Makassar] SQL Query: INSERT INTO produk (
+    id_kategori,
+    nama_produk,
+    merk,
+    kode_produk,
+    deskripsi,
+    harga_aktif,
+    harga_coret,
+    ukuran,
+    warna,
+    in_stok,
+    jumlah_stok,
+    gambar1,
+    gambar2,
+    gambar3,
+    shopee_link,
+    tiktok_link,
+    aktif,
+    favorit,
+    id_admin,
+    terjual
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[02-Mar-2026 14:17:02 Asia/Makassar] Parameters: id_kategori=1, nama_produk=Want It - Gamis Suraidah Launa Flower - (Raya Series 2026), warna=, gambar1=produk_1772432223101_01.jpg, gambar2=produk_1772432223101_02.jpg, gambar3=produk_1772432223101_03.jpg
+[02-Mar-2026 14:19:39 Asia/Makassar] FILES array keys: gambar1, gambar2, gambar3
+[02-Mar-2026 14:19:39 Asia/Makassar] Attempting to upload gambar1 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432380673_01.jpg
+[02-Mar-2026 14:19:39 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:19:39 Asia/Makassar] File temp location: /tmp/phphAxKr8
+[02-Mar-2026 14:19:39 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:19:39 Asia/Makassar] Successfully uploaded gambar1 as: produk_1772432380673_01.jpg
+[02-Mar-2026 14:19:39 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:19:39 Asia/Makassar] Attempting to upload gambar2 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432380673_02.jpg
+[02-Mar-2026 14:19:39 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:19:39 Asia/Makassar] File temp location: /tmp/phpNhIuLn
+[02-Mar-2026 14:19:39 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:19:39 Asia/Makassar] Successfully uploaded gambar2 as: produk_1772432380673_02.jpg
+[02-Mar-2026 14:19:39 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:19:39 Asia/Makassar] Attempting to upload gambar3 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432380673_03.jpg
+[02-Mar-2026 14:19:39 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:19:39 Asia/Makassar] File temp location: /tmp/phpUdID3g
+[02-Mar-2026 14:19:39 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:19:39 Asia/Makassar] Successfully uploaded gambar3 as: produk_1772432380673_03.jpg
+[02-Mar-2026 14:19:39 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:19:39 Asia/Makassar] POST keys received: kode_produk, nama_produk, merk, id_kategori, deskripsi, ukuran, jumlah_stok, terjual, shopee_link, tiktok_link, harga_aktif, harga_coret, in_stok, favorit, aktif, id_admin
+[02-Mar-2026 14:19:39 Asia/Makassar] FILES keys received: gambar1, gambar2, gambar3
+[02-Mar-2026 14:19:39 Asia/Makassar] Extracted images - gambar1: produk_1772432380673_01.jpg, gambar2: produk_1772432380673_02.jpg, gambar3: produk_1772432380673_03.jpg
+[02-Mar-2026 14:19:39 Asia/Makassar] SQL Query: INSERT INTO produk (
+    id_kategori,
+    nama_produk,
+    merk,
+    kode_produk,
+    deskripsi,
+    harga_aktif,
+    harga_coret,
+    ukuran,
+    warna,
+    in_stok,
+    jumlah_stok,
+    gambar1,
+    gambar2,
+    gambar3,
+    shopee_link,
+    tiktok_link,
+    aktif,
+    favorit,
+    id_admin,
+    terjual
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[02-Mar-2026 14:19:39 Asia/Makassar] Parameters: id_kategori=1, nama_produk=Want It - Gamis Nyiur Lowrie Flower (Raya Series 2026), warna=, gambar1=produk_1772432380673_01.jpg, gambar2=produk_1772432380673_02.jpg, gambar3=produk_1772432380673_03.jpg
+[02-Mar-2026 14:21:45 Asia/Makassar] FILES array keys: gambar1
+[02-Mar-2026 14:21:45 Asia/Makassar] Attempting to upload gambar1 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432506355_01.jpg
+[02-Mar-2026 14:21:45 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:21:45 Asia/Makassar] File temp location: /tmp/phpGj70KF
+[02-Mar-2026 14:21:45 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:21:45 Asia/Makassar] Successfully uploaded gambar1 as: produk_1772432506355_01.jpg
+[02-Mar-2026 14:21:45 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:21:45 Asia/Makassar] POST keys received: kode_produk, nama_produk, merk, id_kategori, deskripsi, ukuran, jumlah_stok, terjual, shopee_link, tiktok_link, harga_aktif, harga_coret, in_stok, favorit, aktif, id_admin
+[02-Mar-2026 14:21:45 Asia/Makassar] FILES keys received: gambar1
+[02-Mar-2026 14:21:45 Asia/Makassar] Extracted images - gambar1: produk_1772432506355_01.jpg, gambar2: , gambar3: 
+[02-Mar-2026 14:21:45 Asia/Makassar] SQL Query: INSERT INTO produk (
+    id_kategori,
+    nama_produk,
+    merk,
+    kode_produk,
+    deskripsi,
+    harga_aktif,
+    harga_coret,
+    ukuran,
+    warna,
+    in_stok,
+    jumlah_stok,
+    gambar1,
+    gambar2,
+    gambar3,
+    shopee_link,
+    tiktok_link,
+    aktif,
+    favorit,
+    id_admin,
+    terjual
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[02-Mar-2026 14:21:45 Asia/Makassar] Parameters: id_kategori=8, nama_produk=Want It | Mukena Alluna Ayudya [Raya Series 2026], warna=, gambar1=produk_1772432506355_01.jpg, gambar2=, gambar3=
+[02-Mar-2026 14:24:33 Asia/Makassar] FILES array keys: gambar1, gambar2, gambar3
+[02-Mar-2026 14:24:33 Asia/Makassar] Attempting to upload gambar1 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432673936_01.jpg
+[02-Mar-2026 14:24:33 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:24:33 Asia/Makassar] File temp location: /tmp/phpyeMXVH
+[02-Mar-2026 14:24:33 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:24:33 Asia/Makassar] Successfully uploaded gambar1 as: produk_1772432673936_01.jpg
+[02-Mar-2026 14:24:33 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:24:33 Asia/Makassar] Attempting to upload gambar2 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432673936_02.jpg
+[02-Mar-2026 14:24:33 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:24:33 Asia/Makassar] File temp location: /tmp/phpZNhoWi
+[02-Mar-2026 14:24:33 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:24:33 Asia/Makassar] Successfully uploaded gambar2 as: produk_1772432673936_02.jpg
+[02-Mar-2026 14:24:33 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:24:33 Asia/Makassar] Attempting to upload gambar3 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432673936_03.jpg
+[02-Mar-2026 14:24:33 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:24:33 Asia/Makassar] File temp location: /tmp/phpnc2sj2
+[02-Mar-2026 14:24:33 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:24:33 Asia/Makassar] Successfully uploaded gambar3 as: produk_1772432673936_03.jpg
+[02-Mar-2026 14:24:33 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:24:33 Asia/Makassar] POST keys received: kode_produk, nama_produk, merk, id_kategori, deskripsi, ukuran, jumlah_stok, terjual, shopee_link, tiktok_link, harga_aktif, harga_coret, in_stok, favorit, aktif, id_admin
+[02-Mar-2026 14:24:33 Asia/Makassar] FILES keys received: gambar1, gambar2, gambar3
+[02-Mar-2026 14:24:33 Asia/Makassar] Extracted images - gambar1: produk_1772432673936_01.jpg, gambar2: produk_1772432673936_02.jpg, gambar3: produk_1772432673936_03.jpg
+[02-Mar-2026 14:24:38 Asia/Makassar] FILES array keys: gambar1, gambar2, gambar3
+[02-Mar-2026 14:24:38 Asia/Makassar] Attempting to upload gambar1 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432679762_01.jpg
+[02-Mar-2026 14:24:38 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:24:38 Asia/Makassar] File temp location: /tmp/phpX4m9rP
+[02-Mar-2026 14:24:38 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:24:38 Asia/Makassar] Successfully uploaded gambar1 as: produk_1772432679762_01.jpg
+[02-Mar-2026 14:24:38 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:24:38 Asia/Makassar] Attempting to upload gambar2 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432679762_02.jpg
+[02-Mar-2026 14:24:38 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:24:38 Asia/Makassar] File temp location: /tmp/phpG0kQ3J
+[02-Mar-2026 14:24:38 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:24:38 Asia/Makassar] Successfully uploaded gambar2 as: produk_1772432679762_02.jpg
+[02-Mar-2026 14:24:38 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:24:38 Asia/Makassar] Attempting to upload gambar3 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432679762_03.jpg
+[02-Mar-2026 14:24:38 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:24:38 Asia/Makassar] File temp location: /tmp/php31CAvA
+[02-Mar-2026 14:24:38 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:24:38 Asia/Makassar] Successfully uploaded gambar3 as: produk_1772432679762_03.jpg
+[02-Mar-2026 14:24:38 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:24:38 Asia/Makassar] POST keys received: kode_produk, nama_produk, merk, id_kategori, deskripsi, ukuran, jumlah_stok, terjual, shopee_link, tiktok_link, harga_aktif, harga_coret, in_stok, favorit, aktif, id_admin
+[02-Mar-2026 14:24:38 Asia/Makassar] FILES keys received: gambar1, gambar2, gambar3
+[02-Mar-2026 14:24:38 Asia/Makassar] Extracted images - gambar1: produk_1772432679762_01.jpg, gambar2: produk_1772432679762_02.jpg, gambar3: produk_1772432679762_03.jpg
+[02-Mar-2026 14:24:38 Asia/Makassar] SQL Query: INSERT INTO produk (
+    id_kategori,
+    nama_produk,
+    merk,
+    kode_produk,
+    deskripsi,
+    harga_aktif,
+    harga_coret,
+    ukuran,
+    warna,
+    in_stok,
+    jumlah_stok,
+    gambar1,
+    gambar2,
+    gambar3,
+    shopee_link,
+    tiktok_link,
+    aktif,
+    favorit,
+    id_admin,
+    terjual
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[02-Mar-2026 14:24:38 Asia/Makassar] Parameters: id_kategori=1, nama_produk=Want It - Gamis Set Vest Butterfly cd: 269 (Raya Series 2026), warna=, gambar1=produk_1772432679762_01.jpg, gambar2=produk_1772432679762_02.jpg, gambar3=produk_1772432679762_03.jpg
+[02-Mar-2026 14:27:47 Asia/Makassar] FILES array keys: gambar1, gambar2, gambar3
+[02-Mar-2026 14:27:47 Asia/Makassar] Attempting to upload gambar1 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432868715_01.jpg
+[02-Mar-2026 14:27:47 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:27:47 Asia/Makassar] File temp location: /tmp/phpWR8npv
+[02-Mar-2026 14:27:47 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:27:47 Asia/Makassar] Successfully uploaded gambar1 as: produk_1772432868715_01.jpg
+[02-Mar-2026 14:27:47 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:27:47 Asia/Makassar] Attempting to upload gambar2 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432868715_02.jpg
+[02-Mar-2026 14:27:47 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:27:47 Asia/Makassar] File temp location: /tmp/phpXpL5tV
+[02-Mar-2026 14:27:47 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:27:47 Asia/Makassar] Successfully uploaded gambar2 as: produk_1772432868715_02.jpg
+[02-Mar-2026 14:27:47 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:27:47 Asia/Makassar] Attempting to upload gambar3 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772432868715_03.jpg
+[02-Mar-2026 14:27:47 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:27:47 Asia/Makassar] File temp location: /tmp/phpiySRmU
+[02-Mar-2026 14:27:47 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:27:47 Asia/Makassar] Successfully uploaded gambar3 as: produk_1772432868715_03.jpg
+[02-Mar-2026 14:27:47 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:27:47 Asia/Makassar] POST keys received: kode_produk, nama_produk, merk, id_kategori, deskripsi, ukuran, jumlah_stok, terjual, shopee_link, tiktok_link, harga_aktif, harga_coret, in_stok, favorit, aktif, id_admin
+[02-Mar-2026 14:27:47 Asia/Makassar] FILES keys received: gambar1, gambar2, gambar3
+[02-Mar-2026 14:27:47 Asia/Makassar] Extracted images - gambar1: produk_1772432868715_01.jpg, gambar2: produk_1772432868715_02.jpg, gambar3: produk_1772432868715_03.jpg
+[02-Mar-2026 14:27:47 Asia/Makassar] SQL Query: INSERT INTO produk (
+    id_kategori,
+    nama_produk,
+    merk,
+    kode_produk,
+    deskripsi,
+    harga_aktif,
+    harga_coret,
+    ukuran,
+    warna,
+    in_stok,
+    jumlah_stok,
+    gambar1,
+    gambar2,
+    gambar3,
+    shopee_link,
+    tiktok_link,
+    aktif,
+    favorit,
+    id_admin,
+    terjual
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[02-Mar-2026 14:27:47 Asia/Makassar] Parameters: id_kategori=8, nama_produk=Want It | Mukena Almecca Santorini Shimmer (Raya Series 2026), warna=, gambar1=produk_1772432868715_01.jpg, gambar2=produk_1772432868715_02.jpg, gambar3=produk_1772432868715_03.jpg
+[02-Mar-2026 14:31:47 Asia/Makassar] FILES array keys: gambar1, gambar2
+[02-Mar-2026 14:31:47 Asia/Makassar] Attempting to upload gambar1 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772433108628_01.jpg
+[02-Mar-2026 14:31:47 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:31:47 Asia/Makassar] File temp location: /tmp/phpihHa8Q
+[02-Mar-2026 14:31:47 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:31:47 Asia/Makassar] Successfully uploaded gambar1 as: produk_1772433108628_01.jpg
+[02-Mar-2026 14:31:47 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:31:47 Asia/Makassar] Attempting to upload gambar2 to: /home/wang7441/public_html/api/produk/../../public/images/produk_1772433108628_02.jpg
+[02-Mar-2026 14:31:47 Asia/Makassar] Upload dir permissions: 0755
+[02-Mar-2026 14:31:47 Asia/Makassar] File temp location: /tmp/phpiwpqlO
+[02-Mar-2026 14:31:47 Asia/Makassar] File exists in temp: Yes
+[02-Mar-2026 14:31:47 Asia/Makassar] Successfully uploaded gambar2 as: produk_1772433108628_02.jpg
+[02-Mar-2026 14:31:47 Asia/Makassar] File exists after upload: Yes
+[02-Mar-2026 14:31:47 Asia/Makassar] POST keys received: kode_produk, nama_produk, merk, id_kategori, deskripsi, ukuran, jumlah_stok, terjual, shopee_link, tiktok_link, harga_aktif, harga_coret, in_stok, favorit, aktif, id_admin
+[02-Mar-2026 14:31:47 Asia/Makassar] FILES keys received: gambar1, gambar2
+[02-Mar-2026 14:31:47 Asia/Makassar] Extracted images - gambar1: produk_1772433108628_01.jpg, gambar2: produk_1772433108628_02.jpg, gambar3: 
+[02-Mar-2026 14:31:47 Asia/Makassar] SQL Query: INSERT INTO produk (
+    id_kategori,
+    nama_produk,
+    merk,
+    kode_produk,
+    deskripsi,
+    harga_aktif,
+    harga_coret,
+    ukuran,
+    warna,
+    in_stok,
+    jumlah_stok,
+    gambar1,
+    gambar2,
+    gambar3,
+    shopee_link,
+    tiktok_link,
+    aktif,
+    favorit,
+    id_admin,
+    terjual
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+[02-Mar-2026 14:31:47 Asia/Makassar] Parameters: id_kategori=1, nama_produk=Want It - Dress Set Koko Couple Kimberly (Raya Series 2026), warna=, gambar1=produk_1772433108628_01.jpg, gambar2=produk_1772433108628_02.jpg, gambar3=
