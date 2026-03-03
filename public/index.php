@@ -646,7 +646,7 @@
                 </div>
 
                 <div class="relative rounded-xl aspect-video overflow-hidden cursor-pointer group hover:shadow-lg transition-shadow">
-                    <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')"></div>
+                    <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://i.ibb.co.com/qYJmj2S9/tiktok1234.jpg')"></div>
                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
                         <div class="text-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-90 group-hover:scale-100">
                             <svg class="w-20 h-20 mx-auto mb-3" viewBox="0 0 455 512.098" fill="white">
