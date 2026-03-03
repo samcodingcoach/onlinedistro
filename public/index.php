@@ -491,6 +491,60 @@
        
    <!-- section shop by category -->
 
+    <!-- Collection Highlights (Video) -->
+        <?php
+        // Fetch video data using the helper function (works on both Linux and Windows)
+        // API: /api/video/list.php
+        // Key fields: id_video, nama_video, link (video file), url_forward (click destination), aktif
+        $video_list = [];
+        $api_file_path = __DIR__ . '/../api/video/list.php';
+
+        if (file_exists($api_file_path)) {
+            $data = @fetchApiData($api_file_path);
+            if (isset($data['success']) && $data['success'] && isset($data['data'])) {
+                // Filter for active videos only
+                $active_videos = array_filter($data['data'], function($video) {
+                    return $video['aktif'] == '1';
+                });
+                // Limit to 2 videos
+                $video_list = array_slice($active_videos, 0, 2);
+            }
+        }
+        ?>
+        <?php if (!empty($video_list)): ?>
+        <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <h2 class="text-foreground-light dark:text-foreground-dark text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] mb-8">
+                Collection Highlights
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <?php foreach ($video_list as $video): ?>
+                    <?php 
+                    // Handle video link - check if it's just filename or full path
+                    $videoSrc = $video['link'];
+                    if (strpos($videoSrc, 'videos/') === false && strpos($videoSrc, 'http') === false) {
+                        $videoSrc = 'videos/' . $videoSrc;
+                    }
+                    ?>
+                    <a href="<?php echo htmlspecialchars($video['url_forward']); ?>" 
+                       class="group relative overflow-hidden rounded-xl aspect-square shadow-sm border border-surface-light dark:border-surface-dark block">
+                        <video autoplay muted loop playsinline preload="auto" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <source src="<?php echo htmlspecialchars($videoSrc); ?>" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <h3 class="text-2xl font-bold text-white drop-shadow-md">
+                                <?php echo htmlspecialchars($video['nama_video']); ?>
+                            </h3>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </section>
+        <?php endif; ?>
+
+    <!-- Collection Highlights (Video) -->
+
     <!-- best seller -->
         <?php
         // Fetch best seller products using the helper function (works on both Linux and Windows)
