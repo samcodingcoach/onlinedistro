@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>APRIL - Modern Fashion</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .carousel-container {
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+        .carousel-slide {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            width: 100%;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d41152",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221016",
+                        "foreground-light": "#1b0d12",
+                        "foreground-dark": "#f8f6f6",
+                        "secondary-light": "#9a4c66",
+                        "secondary-dark": "#e0b8c6",
+                        "surface-light": "#f3e7eb",
+                        "surface-dark": "#3a212a"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark text-foreground-light dark:text-foreground-dark">
+    <div class="relative flex min-h-screen w-full flex-col">
+
+        <main class="flex-grow">
+            <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 relative group">
+                <div class="relative overflow-hidden rounded-xl">
+                    <div class="carousel-container flex no-scrollbar overflow-x-auto" id="heroCarousel">
+                        <!--  from key field {url_gambar} -->
+                        <div class="carousel-slide flex min-h-[400px] md:min-h-[450px] flex-col items-center justify-center gap-6 bg-cover bg-center bg-no-repeat p-8 text-center transition-all"
+                            style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAzGT9uB5Gqsg5xRuSGK9prylfGfqMfMr-Tcm14ZOzLCYsPyDmIkpSJrzEV8Cudu6xobSsNIHzS2kgDF5fx8V2qxsCOz3XAzMVNwVxZvW_j7LA7-EMlRJmx8UZvDes-LTBcYATduVfluXRTucm6gtH1GVMYGmcz5osUa6zk6jE6DbTHIlmciAQdhGqVq8A783RAf1t7w-iU9j8Prgv8Cy3dAfpYdbwkCJ2M9xAwpVahCHX0Yf0-w7O_9pEXz8FDLE54fXz3DBLGHtI");'>
+                            <div class="flex flex-col gap-2 max-w-2xl">
+                                <!--  from key field {judul} -->
+                                <h1
+                                    class="text-white text-3xl font-black leading-tight tracking-[-0.033em] md:text-5xl lg:text-6xl">
+                                    The Autumn '24 Collection</h1>
+
+                                <!-- from key field {deskripsi} -->
+                                <h2 class="text-white/90 text-base font-normal leading-normal md:text-lg">Discover
+                                    timeless pieces designed for the modern woman.</h2>
+                            </div>
+                            <button
+                                class="flex h-11 min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-bold leading-normal tracking-[0.015em] text-white transition-all hover:scale-105 active:scale-95 shadow-xl shadow-primary/30">
+                                <span>Shop The Collection</span>
+                            </button>
+                        </div>
+
+                        <!-- 2 div selanjutnya sebenarnya tidak ada, anda perlu menambahkan 2 data lagi di database dengan key field judul dan deskripsi untuk menampilkan 2 div berikutnya, tapi saya buatkan saja untuk contoh tampilannya saja. -->
+                        <div class="carousel-slide flex min-h-[400px] md:min-h-[450px] flex-col items-center justify-center gap-6 bg-cover bg-center bg-no-repeat p-8 text-center"
+                            style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBfM_0NCQFLY1rDJS1m0bIz0-mUKl3x6irtMWdSOZwjhiVM9EEJSOFKghXdeQQ4Z9GcNBsHg-Ez9ZjoPJNg7zMW9tgk8Bw1YvBmedmOoLikKRxV3sbWPEGFeYFS5CDCH1ryJAlk6ko6qPEZudeXjhI03ZtCIP9s4xkrNA5-7X_o6CY0UYo2fQ6t3WyaEQIn9m1C8jccDS6BzpCCI1gQdR-dj_hAhwXbXvTvFL0wWw8ah6-D9SUfqksMod_2ZjnLSszdcAud1KE5wIM");'>
+                            <div class="flex flex-col gap-2 max-w-2xl">
+                                <h1
+                                    class="text-white text-3xl font-black leading-tight tracking-[-0.033em] md:text-5xl lg:text-6xl">
+                                    Romantic Dresses</h1>
+                                <h2 class="text-white/90 text-base font-normal leading-normal md:text-lg">Flowy
+                                    silhouettes and floral prints for every occasion.</h2>
+                            </div>
+                            <button
+                                class="flex h-11 min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-full bg-white px-8 text-sm font-bold leading-normal tracking-[0.015em] text-foreground-light transition-all hover:bg-primary hover:text-white hover:scale-105 shadow-xl">
+                                <span>Explore Dresses</span>
+                            </button>
+                        </div>
+                        <div class="carousel-slide flex min-h-[400px] md:min-h-[450px] flex-col items-center justify-center gap-6 bg-cover bg-center bg-no-repeat p-8 text-center"
+                            style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuARuIq_A96gAVo4Iv6_6-xRv1Pn-dfbgK5-XE82ps9RKofoRJfPLtIGajC0ft-c_insuOcxNBoa-YcrC35WaMULMC4U1FPTifHhdqxD6CDvm6u6e12jLPHjYm4qRS54oOKMv0USv8zkMaXWTvWXB6HBdWKSqt0GxuUsqZwwl4Fg0z2FqBPGWtNF6bNz-KCA9H9QLTdbf2wid835xY_GrrlGFtk6BsLUgqMD1xvA7RYz_G54a2Klph5NfMtKm-EUhek92H00hdbwm20");'>
+                            <div class="flex flex-col gap-2 max-w-2xl">
+                                <h1
+                                    class="text-white text-3xl font-black leading-tight tracking-[-0.033em] md:text-5xl lg:text-6xl">
+                                    The Accessory Edit</h1>
+                                <h2 class="text-white/90 text-base font-normal leading-normal md:text-lg">Elevate your
+                                    look with our curated selection of bags and jewelry.</h2>
+                            </div>
+                            <button
+                                class="flex h-11 min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-bold leading-normal tracking-[0.015em] text-white transition-all hover:scale-105 shadow-xl shadow-primary/30">
+                                <span>Shop Accessories</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button
+                        class="absolute left-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white border border-white/30 transition-all hover:bg-white hover:text-primary opacity-0 group-hover:opacity-100 hidden md:flex"
+                        onclick="document.getElementById('heroCarousel').scrollBy({left: -document.getElementById('heroCarousel').offsetWidth, behavior: 'smooth'})">
+                        <span class="material-symbols-outlined text-xl">arrow_back_ios_new</span>
+                    </button>
+                    <button
+                        class="absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white border border-white/30 transition-all hover:bg-white hover:text-primary opacity-0 group-hover:opacity-100 hidden md:flex"
+                        onclick="document.getElementById('heroCarousel').scrollBy({left: document.getElementById('heroCarousel').offsetWidth, behavior: 'smooth'})">
+                        <span class="material-symbols-outlined text-xl">arrow_forward_ios</span>
+                    </button>
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3">
+                        <button class="w-2 h-2 rounded-full bg-white transition-all scale-125"
+                            onclick="document.getElementById('heroCarousel').scrollTo({left: 0, behavior: 'smooth'})"></button>
+                        <button class="w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-all"
+                            onclick="document.getElementById('heroCarousel').scrollTo({left: document.getElementById('heroCarousel').offsetWidth, behavior: 'smooth'})"></button>
+                        <button class="w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-all"
+                            onclick="document.getElementById('heroCarousel').scrollTo({left: document.getElementById('heroCarousel').offsetWidth * 2, behavior: 'smooth'})"></button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+
+    </div>
+
+</body>
+
+</html>

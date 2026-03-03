@@ -496,18 +496,14 @@
         // Fetch video data using the helper function (works on both Linux and Windows)
         // API: /api/video/list.php
         // Key fields: id_video, nama_video, link (video file), url_forward (click destination), aktif
+        // API already filters: aktif=1, ORDER BY created_date DESC, LIMIT 2
         $video_list = [];
         $api_file_path = __DIR__ . '/../api/video/list.php';
 
         if (file_exists($api_file_path)) {
             $data = @fetchApiData($api_file_path);
             if (isset($data['success']) && $data['success'] && isset($data['data'])) {
-                // Filter for active videos only
-                $active_videos = array_filter($data['data'], function($video) {
-                    return $video['aktif'] == '1';
-                });
-                // Limit to 2 videos
-                $video_list = array_slice($active_videos, 0, 2);
+                $video_list = $data['data'];
             }
         }
         ?>

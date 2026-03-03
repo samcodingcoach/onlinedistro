@@ -9,9 +9,11 @@ require_once __DIR__ . '/../../config/koneksi.php';
 $response = array();
 
 try {
-    $query = "SELECT id_video, nama_video, link, url_forward, aktif, created_date 
-              FROM videobanner 
-              ORDER BY created_date DESC";
+    $query = "SELECT id_video, nama_video, link, url_forward, aktif, created_date
+              FROM videobanner
+              WHERE aktif = '1'
+              ORDER BY created_date DESC
+              LIMIT 2";
 
     $result = $conn->query($query);
 
