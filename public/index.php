@@ -177,10 +177,7 @@
      <div class="flex h-16 items-center justify-between">
       <div class="flex items-center gap-8">
        <a class="flex items-center gap-2 text-foreground-light dark:text-foreground-dark" href="#">
-        <svg class="h-6 w-6" fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-         <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z">
-         </path>
-        </svg>
+        <img src="icon.png" alt="<?php echo htmlspecialchars($title_nama_distro); ?>" class="h-6 w-6">
         <h2 class="text-xl font-bold tracking-[-0.015em]">
             <?php echo htmlspecialchars($title_nama_distro); ?>
         </h2>
@@ -636,7 +633,7 @@
             <h2 class="text-foreground-light dark:text-foreground-dark text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em] mb-6">Find Us</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center">
                 <div class="relative rounded-xl aspect-video overflow-hidden cursor-pointer group hover:shadow-lg transition-shadow">
-                    <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')"></div>
+                    <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://i.ibb.co.com/jvWhxSdx/shopee1234.jpg')"></div>
 
                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
                         <div class="text-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-90 group-hover:scale-100">

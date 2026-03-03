@@ -143,10 +143,7 @@ $page_description = $category_filter
      <div class="flex h-16 items-center justify-between">
       <div class="flex items-center gap-8">
        <a class="flex items-center gap-2 text-foreground-light dark:text-foreground-dark" href="index.php">
-        <svg class="h-6 w-6" fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-         <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z">
-         </path>
-        </svg>
+        <img src="icon.png" alt="<?php echo htmlspecialchars($title_nama_distro); ?>" class="h-6 w-6">
         <h2 class="text-xl font-bold tracking-[-0.015em]">
             <?php echo htmlspecialchars($title_nama_distro); ?>
         </h2>
