@@ -317,50 +317,84 @@
 
    <main class="flex-grow">
     <!-- konten utama di sini -->
-    <!-- hero banner section -->
+    <!-- hero banner carousel section -->
         <?php
         // Fetch banner data using the helper function (works on both Linux and Windows)
-        $banner = null;
+        $banner_list = [];
         $api_file_path = __DIR__ . '/../api/banner/list.php';
 
         if (file_exists($api_file_path)) {
             $data = @fetchApiData($api_file_path);
 
             // Filter only active banners (aktif = '1')
-            $active_banners = [];
             if (isset($data['data']) && is_array($data['data'])) {
-                $active_banners = array_filter($data['data'], function($b) {
+                $banner_list = array_filter($data['data'], function($b) {
                     return isset($b['aktif']) && $b['aktif'] == '1';
                 });
+                // Re-index array
+                $banner_list = array_values($banner_list);
             }
-
-            // Get the first active banner if any exist
-            $banner = !empty($active_banners) ? reset($active_banners) : null;
         }
-
-        $banner_judul = $banner['judul'] ?? null;
-        $banner_deskripsi = $banner['deskripsi'] ?? null;
-        $banner_url_gambar = $banner['url_gambar'] ?? null;
         ?>
-        <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <div class="flex min-h-[60vh] flex-col items-center justify-center gap-6 rounded-xl bg-cover bg-center bg-no-repeat p-4 text-center" data-alt="A model wearing a stylish trench coat from the new autumn collection, posing in a minimalist urban setting." style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("<?php echo htmlspecialchars($banner_url_gambar); ?>");'>
-                <div class="flex flex-col gap-2">
-                    <h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] md:text-6xl">
-                        <?php echo htmlspecialchars($banner_judul); ?>
-                    </h1>
-                    <h2 class="text-white text-base font-normal leading-normal md:text-lg">
-                        <?php echo htmlspecialchars($banner_deskripsi); ?>
-                    </h2>
+        <section class="relative group w-full">
+            <div class="relative overflow-hidden">
+                <div class="carousel-container flex no-scrollbar overflow-x-auto" id="heroCarousel">
+                    <?php if (!empty($banner_list)): ?>
+                        <?php foreach ($banner_list as $banner): ?>
+                        <div class="carousel-slide flex min-h-[400px] md:min-h-[450px] lg:min-h-[500px] flex-col items-center justify-center gap-6 bg-cover bg-center bg-no-repeat p-4 md:p-8 text-center transition-all w-full flex-shrink-0"
+                            style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("<?php echo htmlspecialchars($banner['url_gambar']); ?>");'>
+                            <div class="flex flex-col gap-2 max-w-2xl">
+                                <h1 class="text-white text-3xl font-black leading-tight tracking-[-0.033em] md:text-5xl lg:text-6xl">
+                                    <?php echo htmlspecialchars($banner['judul']); ?>
+                                </h1>
+                                <h2 class="text-white/90 text-base font-normal leading-normal md:text-lg">
+                                    <?php echo htmlspecialchars($banner['deskripsi']); ?>
+                                </h2>
+                            </div>
+                            <a href="product.php"
+                                class="flex h-11 min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-bold leading-normal tracking-[0.015em] text-white transition-all hover:scale-105 active:scale-95 shadow-xl shadow-primary/30">
+                                <span>Shop Now</span>
+                            </a>
+                        </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <!-- Fallback jika tidak ada banner -->
+                        <div class="carousel-slide flex min-h-[400px] md:min-h-[450px] lg:min-h-[500px] flex-col items-center justify-center gap-6 bg-cover bg-center bg-no-repeat p-4 md:p-8 text-center transition-all w-full flex-shrink-0"
+                            style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("images/banner-default.jpg");'>
+                            <div class="flex flex-col gap-2 max-w-2xl">
+                                <h1 class="text-white text-3xl font-black leading-tight tracking-[-0.033em] md:text-5xl lg:text-6xl">
+                                    Welcome to <?php echo htmlspecialchars($title_nama_distro); ?>
+                                </h1>
+                                <h2 class="text-white/90 text-base font-normal leading-normal md:text-lg">
+                                    <?php echo htmlspecialchars($title_slogan); ?>
+                                </h2>
+                            </div>
+                            <a href="product.php"
+                                class="flex h-11 min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-bold leading-normal tracking-[0.015em] text-white transition-all hover:scale-105 active:scale-95 shadow-xl shadow-primary/30">
+                                <span>Shop Now</span>
+                            </a>
+                        </div>
+                    <?php endif; ?>
                 </div>
-                <a href="product.php" class="flex h-12 min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full bg-primary px-6 text-base font-bold leading-normal tracking-[0.015em] text-white transition-opacity hover:opacity-90">
-                    <span class="truncate">
-                        Shop Now
-                    </span>
-                </a>
+                
+                <!-- Navigation Arrows -->
+                <button id="carouselPrev"
+                    class="absolute left-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white border border-white/30 transition-all hover:bg-white hover:text-primary opacity-0 group-hover:opacity-100 hidden md:flex z-10">
+                    <span class="material-symbols-outlined text-xl">arrow_back_ios_new</span>
+                </button>
+                <button id="carouselNext"
+                    class="absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white border border-white/30 transition-all hover:bg-white hover:text-primary opacity-0 group-hover:opacity-100 hidden md:flex z-10">
+                    <span class="material-symbols-outlined text-xl">arrow_forward_ios</span>
+                </button>
+                
+                <!-- Carousel Dots -->
+                <div id="carouselDots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+                    <!-- Dots will be generated by JavaScript -->
+                </div>
             </div>
         </section>
-    
-    <!-- hero banner section -->
+
+    <!-- hero banner carousel section -->
 
    <!--  section new arrival -->
         <?php
@@ -1027,6 +1061,101 @@
               }
           }
       }
+  });
+
+  // Hero Carousel Auto-Slide Functionality
+  document.addEventListener('DOMContentLoaded', function() {
+      const carousel = document.getElementById('heroCarousel');
+      const prevBtn = document.getElementById('carouselPrev');
+      const nextBtn = document.getElementById('carouselNext');
+      const dotsContainer = document.getElementById('carouselDots');
+      
+      if (!carousel) return;
+      
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const totalSlides = slides.length;
+      
+      if (totalSlides === 0) return;
+      
+      let currentSlide = 0;
+      let autoSlideInterval;
+      
+      // Create dots
+      function createDots() {
+          dotsContainer.innerHTML = '';
+          for (let i = 0; i < totalSlides; i++) {
+              const dot = document.createElement('button');
+              dot.className = `w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white'}`;
+              dot.setAttribute('data-slide', i);
+              dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+              dot.addEventListener('click', () => goToSlide(i));
+              dotsContainer.appendChild(dot);
+          }
+      }
+      
+      // Update dots
+      function updateDots() {
+          const dots = dotsContainer.querySelectorAll('button');
+          dots.forEach((dot, index) => {
+              if (index === currentSlide) {
+                  dot.className = 'w-2 h-2 rounded-full bg-white transition-all scale-125';
+              } else {
+                  dot.className = 'w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-all';
+              }
+          });
+      }
+      
+      // Go to specific slide
+      function goToSlide(index) {
+          currentSlide = index;
+          const slideWidth = carousel.offsetWidth;
+          carousel.scrollTo({
+              left: slideWidth * currentSlide,
+              behavior: 'smooth'
+          });
+          updateDots();
+          resetAutoSlide();
+      }
+      
+      // Next slide
+      function nextSlide() {
+          currentSlide = (currentSlide + 1) % totalSlides;
+          goToSlide(currentSlide);
+      }
+      
+      // Previous slide
+      function prevSlide() {
+          currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+          goToSlide(currentSlide);
+      }
+      
+      // Auto slide
+      function startAutoSlide() {
+          autoSlideInterval = setInterval(nextSlide, 5000); // 5 seconds
+      }
+      
+      // Reset auto slide
+      function resetAutoSlide() {
+          clearInterval(autoSlideInterval);
+          startAutoSlide();
+      }
+      
+      // Pause auto slide on hover
+      carousel.addEventListener('mouseenter', () => {
+          clearInterval(autoSlideInterval);
+      });
+      
+      carousel.addEventListener('mouseleave', () => {
+          startAutoSlide();
+      });
+      
+      // Navigation buttons
+      if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+      if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+      
+      // Initialize
+      createDots();
+      startAutoSlide();
   });
   </script>
  </body>
